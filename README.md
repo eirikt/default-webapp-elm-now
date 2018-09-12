@@ -1,6 +1,6 @@
 # Default Webapp (Elm & ZEIT Now edition)
 
-Here is my default (opinionated/favourite) setup for web application development. (That statement will remain true at least a year or two after the date of the latest commit.)
+My default (opinionated/favourite) setup for web application development. (That statement will remain true at least a year or two after the date of the latest commit.)
 The main objectives being:
 
 - A design that _scales both technically and organizationally_
@@ -199,7 +199,7 @@ Latest greatest, always: <https://defaultwebapp.now.sh>
 
 - v0.1.0: <https://file-pmqnhwkidm.now.sh>
 - v0.1.1: <https://file-iomajqiucy.now.sh>
-
+- v0.1.2: <https://file-xkfehobloq.now.sh>
 
 
 
