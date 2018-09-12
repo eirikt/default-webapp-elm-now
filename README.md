@@ -4,21 +4,21 @@ Here is my default (opinionated/favourite) setup for web application development
 The main objectives being:
 
 - A design that _scales both technically and organizationally_
-- Opinionated---yes, but also _idiomatic_
+- Opinionated&mdash;yes, but also _idiomatic_
 
-Regarding _technical scaling_---this setup is a simple and basic webapp with trivial content.
-Yet it will be a complete vertical of a sound architecture---ready for a significant content adding without having to rewrite/reorganize the code base, nor having to introduce more components just to make things work better.
+Regarding _technical scaling_&mdash;this setup is a simple and basic webapp with trivial content.
+Yet it will be a complete vertical of a sound architecture&mdash;ready for a significant content adding without having to rewrite/reorganize the code base, nor having to introduce more components just to make things work better.
 It should be out-of-the-box-ready for thousands of concurrent users as well.
 
-Regarding _organizational scaling_---it is just another word for _readability_ and _maintainability_.
-An important part of achieving this is a concise and compact code base---which leads us to the most opinionated technical component in this setup---[Elm][elm].
-Elm is a statically typed functional programming language---a [family][ml-family] of programming languages that has quite intriguing properties.
+Regarding _organizational scaling_&mdash;it is just another word for _readability_ and _maintainability_.
+An important part of achieving this is a concise and compact code base&mdash;which leads us to the most opinionated technical component in this setup&mdash;[Elm][elm].
+Elm is a statically typed functional programming language&mdash;a [family][ml-family] of programming languages that has quite intriguing properties.
 If you haven't tried one of them, you really should!
 (No links here, you'll figure it out.)
 
 ...
 
-Other design decisions/components being embraced---or at least evaluated---in this project are/will be:
+Other design decisions/components being embraced&mdash;or at least evaluated&mdash;in this project are/will be:
 
 - Micro-iterations/short feedback loops
 - [Responsive design][responsive] (of course)
@@ -26,16 +26,16 @@ Other design decisions/components being embraced---or at least evaluated---in th
 - A ["serverless"][serverless-computing] approach
 - A ["Continous integration/continuous deployment" (CI/CD) ][ci-cd] setup
 
-These will be argued for, and introduced on the way as we go along, commit by commit, statement by statement---**stay tuned!**
+These will be argued for, and introduced on the way as we go along, commit by commit, statement by statement&mdash;**stay tuned!**
 
-(This will (maybe) end up like a "web project starter", a well-documented starting-point for a project, like a boilerplate---or just a basic tutorial.)
+(This will (maybe) end up like a "web project starter", a well-documented starting-point for a project, like a boilerplate&mdash;or just a basic tutorial.)
 
 A live version is hosted on [ZEIT Now][now], as <https://defaultwebapp.now.sh>.
 
 ...
 
 This repository/project is sort of an update of my previous ["default webapp"][default-webapp-heroku] project, developed in 2014-2015.
-Many of the components from that project are now replaced by other preferred components---e.g. like JavaScript/[React][react]/[Redux][redux] being replaced by [Elm][elm], [Grunt][grunt] being replaced by [webpack][webpack], [Heroku][heroku] being replaced by [ZEIT][zeit]'s [Now][now].
+Many of the components from that project are now replaced by other preferred components&mdash;e.g. like JavaScript/[React][react]/[Redux][redux] being replaced by [Elm][elm], [Grunt][grunt] being replaced by [webpack][webpack], [Heroku][heroku] being replaced by [ZEIT][zeit]'s [Now][now].
 Also, some components are kept the same, like [Sass][sass], and probably the look & feel. (I am not a UX guy.)
 
 
@@ -59,7 +59,7 @@ Just to be very basic and specific, the only prerequisites are:
 Then:
 1. Install [Node.js][node] (The Node package manager, **_npm_**, is included).
 
-   While at it---update npm (which release cycle is more frequent than Node.js'):
+   While at it&mdash;update npm (which release cycle is more frequent than Node.js'):
    
        npm install npm --global
 
@@ -72,7 +72,7 @@ Let's get our first version online in an instance:
 
     now
 
-That fails---unknown command---install the ZEIT Now client:
+That fails&mdash;unknown command&mdash;install the ZEIT Now client:
 
     npm install --global now
 
@@ -80,7 +80,7 @@ Try again:
 
     now
 
-That fails---nothing to deploy---add a file to deploy (e.g. in a Windows `CMD` terminal):
+That fails&mdash;nothing to deploy&mdash;add a file to deploy (e.g. in a Windows `CMD` terminal):
 
     TYPE NUL > index.txt
 
@@ -89,7 +89,7 @@ Try again:
     now
 
 If you don't have an account yet;
-_Type in your email address_---_go to your email client_---_verify your email address_.
+_Type in your email address_&mdash;_go to your email client_&mdash;_verify your email address_.
 You now have a ZEIT Now account - also, you are now signed in.
 
 Try again:
@@ -100,7 +100,7 @@ Give the deployment confirmation a '`y`' - and that's it!
 **Your webapp is online** - the very, very first version of it that is...
 
 Paste the given URL into a browser tab and have a look.
-The deployed webapp is not particularly interesting---it is completely empty.
+The deployed webapp is not particularly interesting&mdash;it is completely empty.
 Ok, let us create our very first version with some actual content (again e.g. in a Windows `CMD` terminal):
 
     ECHO Default Webapp - Elm and ZEIT Now edition (v0.1.1) > index.txt
@@ -124,7 +124,7 @@ E.g.:
 ### ZEIT Now: More convenient deployment to production
 
 Creating all those staging-to-production aliasing commands can be cumbersome.
-ZEIT Now has a configuration file---`now.json`---that helps out with that.
+ZEIT Now has a configuration file&mdash;`now.json`&mdash;that helps out with that.
 `now.json` has a property `alias` which will be assigned to the latest deployment when running `now alias` (with no arguments).
 So, e.g., for automating deployment to my default webapp `defaultwebapp`:
 
@@ -186,6 +186,20 @@ TODO: ...
 
 ### v0.x: ...
 TODO: ...
+
+
+
+* * *
+
+
+
+## Webapp deployment history
+
+Latest greatest, always: <https://defaultwebapp.now.sh>
+
+- v0.1.0: <https://file-pmqnhwkidm.now.sh>
+
+
 
 
 
