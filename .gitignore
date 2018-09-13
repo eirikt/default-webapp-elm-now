@@ -1,0 +1,14 @@
+# Always ignore
+.ssh
+
+# Ignore generated/derived/downloaded stuff
+build
+
+# Ignore other development stuff
+#...
+
+# Ignore IDE/tools stuff
+#...
+
+# Ignore logs
+#...

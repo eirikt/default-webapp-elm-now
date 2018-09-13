@@ -1,6 +1,7 @@
 # Default Webapp (Elm & ZEIT Now edition)
 
-My default (opinionated/favourite) setup for web application development. (That statement will remain true at least a year or two after the date of the latest commit.)
+My default (opinionated/favourite) setup for web application development. (That statement will remain true at least a year or two after the date of the last commit of this project...)
+
 The main objectives being:
 
 - A design that _scales both technically and organizationally_
@@ -154,7 +155,7 @@ Check out this easy-to-remember URL in all browsers available!
 ### v0.x: Project layout & Building with Webpack and npm
 TODO: ...
 
-### v0.x: Elm (version 0.19)
+### v0.x: Elm (version 0.19&mdash;latest greatest)
 TODO: ...
 
 ### v0.x: Styling with Sass
@@ -196,6 +197,8 @@ TODO: ...
 ## Webapp deployment history
 
 Latest greatest, always: <https://defaultwebapp.now.sh>
+
+- v0.2.0: <https://build-epqechqdql.now.sh>
 
 - v0.1.4: <https://file-oacadzoxep.now.sh>
 - v0.1.3: <https://file-eswpsfmlgn.now.sh>
