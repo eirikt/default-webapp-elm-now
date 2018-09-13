@@ -175,7 +175,7 @@ TODO: ...
 ### v0.x: Elm: Communicating with the outside world
 TODO: ...
 
-### v0.x: Elm: Using Service Workers
+### v0.x: Elm: "Offline first", using Service Workers
 TODO: ...
 
 ### v0.x: Elm: "Mobile App" / Progressive Web Applications
@@ -197,10 +197,11 @@ TODO: ...
 
 Latest greatest, always: <https://defaultwebapp.now.sh>
 
-- v0.1.0: <https://file-pmqnhwkidm.now.sh>
-- v0.1.1: <https://file-iomajqiucy.now.sh>
-- v0.1.2: <https://file-xkfehobloq.now.sh>
+- v0.1.4: <https://file-oacadzoxep.now.sh>
 - v0.1.3: <https://file-eswpsfmlgn.now.sh>
+- v0.1.2: <https://file-xkfehobloq.now.sh>
+- v0.1.1: <https://file-iomajqiucy.now.sh>
+- v0.1.0: <https://file-pmqnhwkidm.now.sh>
 
 
 
