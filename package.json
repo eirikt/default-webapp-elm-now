@@ -1,13 +1,19 @@
 {
     "name": "default-webapp-elm-now",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "license": "ISC",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/eirikt/default-webapp-elm-now.git"
     },
     "scripts": {
-        "build": "webpack"
+        "setup": "npm install",
+        "clean": "rimraf build",
+        "build": "webpack",
+        "deploy": "npm run deploy:staging",
+        "deploy:staging": "npm run setup & npm run clean & npm run build & now build --public",
+        "deploy:prod": "npm run deploy:production",
+        "deploy:production": "now alias"
     },
     "devDependencies": {
         "file-loader": "^2.0.0",
