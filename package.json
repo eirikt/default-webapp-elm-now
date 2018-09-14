@@ -1,0 +1,9 @@
+{
+    "name": "default-webapp-elm-now",
+    "version": "0.2.1",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eirikt/default-webapp-elm-now.git"
+    }
+}
