@@ -3,6 +3,7 @@
 
 # Ignore generated/derived/downloaded stuff
 build
+node_modules
 
 # Ignore other development stuff
 #...
