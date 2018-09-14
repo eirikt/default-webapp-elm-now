@@ -150,43 +150,79 @@ Check out this easy-to-remember URL in all browsers available!
 ## Changelog
 
 ### v0.1: Establish project and deploy to ZEIT Now
+
+##### v0.1.0: Empty static single resource [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/56863c2f0285c45f903f5028db06b076c0bbe298) | [deployment](https://file-pmqnhwkidm.now.sh) ]
 (See above.)
 
-### v0.x: Project layout & Building with Webpack and npm
-TODO: ...
+##### v0.1.1: Static single plain text resource [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/1cedc30a49a1738c6f5f64938537b6cdc3757de6) | [deployment](https://file-iomajqiucy.now.sh) ]
+(See above.)
 
-### v0.x: Elm (version 0.19&mdash;latest greatest)
-TODO: ...
+##### v0.1.2: Single static web resource [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/62c30d234434e46637d7db8cc074de6602ee2d09) | [deployment](https://file-xkfehobloq.now.sh) ]
+`text/plain` resource replaced by `text/html` resource&mdash;gives us quite a bit more possibilities.
+
+##### v0.1.3: Text formatting [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/9eb77c484ea273caeec36a3c187bb824f28762bc) | [deployment](https://file-eswpsfmlgn.now.sh) ]
+Very basic HTML tags added.
+(HTML tutorials and WYSIWYG editor helpers are all over the web.)
+
+##### v0.1.4: Convenient deployment to production [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/3d6cdd9c4944878ea9ce5e2c6ed36e79ffea95f4) ]
+(See above.)
+
+### v0.2: Project layout & Building with Webpack and npm
+
+##### v0.2.0: Project layout  [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/03ca6f91da131e70cdffaa3632a22a3e8ed754c4) | [deployment](https://build-epqechqdql.now.sh) ]
+
+- A designated source folder, `src`, should include most source files.
+Left out at the project root are documentation, license, and project-wide configurations.
+
+- A designated build folder, `build`, brings the need of a `.gitignore` file, ignoring that folder from version control.
+Also, it mandates a change in the ZEIT Now configuration file `now.json`&mdash;where the deployment prefix (`name`) goes from default (project folder name) to `"name":"build"`. Read about the `now.json` configuration file [here][now-json].
+
+- The only "build" step so far is just to copy the `src/index.html` file to the `build` folder&mdash;manually for now.
+
+##### v0.2.1: npm
+Vanilla `package.json` configurations
+
+##### v0.2.2: License
+A license file reflecting what is stated in `package.json`
+
+##### v0.2.3: Webpack
+Vanilla Webpack configurations
+
+### v0.3: Elm (version 0.19&mdash;latest greatest)
+_TODO: ..._
 
 ### v0.x: Styling with Sass
-TODO: ...
+_TODO: ..._
 
 ### v0.x: Live reloading & Hot reloading
-TODO: ...
+_TODO: ..._
 
 ### v0.x: Static code analysis
-TODO: ...
+_TODO: ..._
 
 ### v0.x: HTML5 Boilerplate
-TODO: ...
+_TODO: ..._
 
 ### v0.x: The Elm Architecture
-TODO: ...
+_TODO: ..._
 
 ### v0.x: Elm: Communicating with the outside world
-TODO: ...
+_TODO: ..._
 
 ### v0.x: Elm: "Offline first", using Service Workers
-TODO: ...
+_TODO: ..._
 
 ### v0.x: Elm: "Mobile App" / Progressive Web Applications
-TODO: ...
+_TODO: ..._
+
+### v0.x: Elm: Utilizing FaaS resources
+_TODO: ..._
 
 ### v0.x: Elm: "Desktop App" / Electron
-TODO: ...
+_TODO: ..._
 
 ### v0.x: ...
-TODO: ...
+_TODO: ..._
 
 
 
@@ -198,9 +234,9 @@ TODO: ...
 
 Latest greatest, always: <https://defaultwebapp.now.sh>
 
+A list of deployments with visual differences:
 - v0.2.0: <https://build-epqechqdql.now.sh>
 
-- v0.1.4: <https://file-oacadzoxep.now.sh>
 - v0.1.3: <https://file-eswpsfmlgn.now.sh>
 - v0.1.2: <https://file-xkfehobloq.now.sh>
 - v0.1.1: <https://file-iomajqiucy.now.sh>
@@ -224,6 +260,7 @@ Latest greatest, always: <https://defaultwebapp.now.sh>
 [heroku]: https://www.heroku.com
 [zeit]: https://zeit.co
 [now]: https://zeit.co/now
+[now-json]: https://zeit.co/blog/now-json
 
 [atom]: https://atom.io
 
