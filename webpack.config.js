@@ -1,25 +1,22 @@
 const path = require('path');
-const IgnoreEmitPlugin = require('ignore-emit-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-    entry: path.join(__dirname, 'src/index.html'),
+    entry: path.join(__dirname, 'src/index.js'),
     output: {
         path: path.join(__dirname, 'build'),
         filename: 'index.js',
     },
     module: {
         rules: [{
-            test: /index.html/,
+            test: /\.elm$/,
             use: [{
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]'
-                }
+                loader: 'elm-webpack-loader'
             }]
         }]
     },
     plugins: [
-        new IgnoreEmitPlugin('index.js')
+        new HtmlWebpackPlugin()
     ]
 }
 
