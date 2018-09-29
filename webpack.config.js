@@ -17,7 +17,9 @@ const config = {
         }]
     },
     plugins: [
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'src/index.template.html')
+        })
     ]
 }
 
