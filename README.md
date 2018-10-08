@@ -1,5 +1,5 @@
 # Default Webapp (Elm & ZEIT Now edition)
-My default (opinionated/favourite) setup for web application development&mdash;a [single-page application (SPA)][spa] with client-side rendering to be more precise.
+My default (opinionated/favourite) setup for web application development&mdash;a [single-page application (SPA)][spa] with client-side rendering, to be more precise.
 (I guess that statement (the opinionated/favourite part) will remain true at least a year or so after the date of the last commit...)
 
 The main objectives of this code base are:
@@ -37,7 +37,7 @@ A live version is hosted on [ZEIT Now][now], as [defaultwebapp.now.sh](https://d
 ...
 
 This repository/project is sort of an update of my previous ["default webapp"][default-webapp-heroku] project, developed in 2014-2015.
-(I guess it is kind of a personal [code kata][kata].)
+(It is a kind of personal [code kata][kata].)
 The most important change is that the "embedded" Node.js-based server API is gone.
 I will try to use services maintained and hosted elsewhere only.
 Many of the components from the client-side project are now replaced by other preferred components&mdash;e.g. like JavaScript/[React][react]/[Redux][redux] being replaced by [Elm][elm], [Grunt][grunt] being replaced by [webpack][webpack], [Heroku][heroku] being replaced by [ZEIT][zeit]'s [Now][now].
@@ -64,7 +64,7 @@ Then:
 1. Install [Node.js][node] (The package manager tool, _npm_, is included).
 
    While at it&mdash;update npm (which release cycle is more frequent than Node.js'):
-   
+
        npm install npm@latest --global
 
 1. Create a project folder&mdash;and at that location, open a command line terminal.
@@ -204,12 +204,12 @@ It builds a dependency graph which maps every module your project needs and gene
 webpack will figure out which other modules and libraries that entry point depends on (directly and indirectly).
 
    Default is `./src/index.js`
-   
-1. _Output_&mdash;The output property tells webpack where to emit the bundles it creates and how to name these files. 
+
+1. _Output_&mdash;The output property tells webpack where to emit the bundles it creates and how to name these files.
 
    Default is `./dist/main.js`
 
-1. _Loaders_&mdash;Out of the box, webpack only understands JavaScript files. 
+1. _Loaders_&mdash;Out of the box, webpack only understands JavaScript files.
 Loaders allow webpack to process other types of files and convert them into valid modules that can be consumed by your application and added to the dependency graph.
 
    Loaders have two properties in your webpack configuration:
@@ -220,7 +220,7 @@ Loaders allow webpack to process other types of files and convert them into vali
 
 Alternatives to webpack are [Grunt][grunt], [Gulp][gulp], and [Parcel][parcel].
 I must admit I am not a huge webpack fan&mdash;I find the API semantics a bit confusing and overly complicated.
-Anyway, webpack is clearly the idiomatic build tool choice at the moment.
+Anyway, webpack is clearly the idiomatic build tool choice these days.
 
 ###### Our first config
 As our first _entry_, we direct webpack to... our only source file:
@@ -239,24 +239,24 @@ output: {
 In this first `webpack.config.js` we are using webpack for what it is not intended for&mdash;simple file copying.
 That is why we are using a _plugin_, `ignore-emit-webpack-plugin`, to simply ignore and suppress the emitting of the webpack bundle `ìndex.js`, and just using the _loader_ `file-loader` to copy the `index.html` to our `build` folder.
 
-We will be using webpack in a more idiomatic manner in the subsequent commits.
+We will be using webpack more idiomatically in the subsequent commits.
 
 ###### As a build script
 Add our first npm script/task/command in `package.json`:
 ```json
-"scripts": { 
-    "build": "webpack" 
-}, 
+"scripts": {
+    "build": "webpack"
+},
 ```
 
 Install and add webpack as a development dependency in `project.json`:
 
-    npm install webpack --save-dev 
-    npm install webpack-cli --save-dev 
-    
-    npm install file-loader --save-dev 
+    npm install webpack --save-dev
+    npm install webpack-cli --save-dev
+
+    npm install file-loader --save-dev
     npm install ignore-emit-webpack-plugin --save-dev
- 
+
 And run our scripted new task:
 
     npm run build
@@ -279,14 +279,14 @@ So from now on we can, e.g. deploy (from scratch) to staging with a single comma
 
 ### v0.3: Using Elm
 [Elm][elm] is a statically typed, pure functional programming language.
-By that, it brings <a name="fp">good stuff</a> like:
+By that, it brings (by default, out-of-the-box) <a name="fp">good stuff</a> like:
 - [Immutability](https://en.wikipedia.org/wiki/Immutable_object)&mdash;shared mutable state is just a nightmare in computer applications
 
 - [Sum types](https://en.wikipedia.org/wiki/Tagged_union)&mdash;which together with the enforced static type checking eliminates [null references](https://en.wikipedia.org/wiki/Null_pointer)
 
-- Partial function application&mdash;which enables [currying](https://en.wikipedia.org/wiki/Currying)
+- Partial function application&mdash;which enables [currying](https://en.wikipedia.org/wiki/Currying), which facilitates creating highly reusable "configurable" functions
 
-These properties, in addition to the fact that _pure_ functional programming languages tends to enforce them, are seminal properties for the alleged _organizational scaling_ (mentioned at the top). 
+These properties, in addition to the fact that _pure_ functional programming languages tends to enforce them, are seminal properties for the alleged _organizational scaling_ (mentioned at the top).
 Take e.g. _code reuse_, which for procedural or object-oriented programming languages just does not work!
 It is possible in some degree, but requires extensive work and discipline.
 In team settings with long-going projects it is merely impossible.
@@ -295,7 +295,8 @@ In team settings with long-going projects it is merely impossible.
 <p lang="en" dir="ltr">We all know inheritance is full of pitfalls and often produces code that evolves poorly when requirements change. Imagine if there were languages designed around it being the primary code reuse mechanism. Imagine if they were mainstream! Hmm 🤔</p>
 &mdash; <cite>Dan Abramov (@dan_abramov)</cite> <a href="https://twitter.com/dan_abramov/status/990989827981094912?ref_src=twsrc%5Etfw">April 30, 2018</a>
 </blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 The facilitating, "nudging", and enforcement of code reuse in statically typed functional programming languages is quite a different story&mdash;as mentioned above,, you should try it out!
 
@@ -337,7 +338,7 @@ So, we add a `src/index.js` file, in which we do two things:
    For the small amounts of JavaScript we will use, we will, as a principle, use modern JavaScript.
    Here we are using ECMAScript 2015 features&mdash;which means that Internet Explorer 10 and older browsers at the moment are unsupported in this webapp.
    Support for older browsers can be achieved by an extra transpiling step (which we will introduce in later commits)&mdash;but only add it if the customer explicitly asks for/demands it!
-      
+
    ###### Elm-based content
    We have to add the requested `src/elm/Main.elm` source file. e.g.:
    ```elm
@@ -362,7 +363,7 @@ So, we add a `src/index.js` file, in which we do two things:
    It will transpile the Elm source code to ECMAScript 5 source code using the Elm standard `make` tool (which is included in the standard Elm install).
    Also, the Elm ECMAScript 5-based runtime will be added to the generated code.
    More on the Elm runtime later.
-   
+
 1. Execute this generated JavaScript, and add it to a DOM element we know is present in the generated `index.html`.
    ```javascript
    app.Elm.Main.init({
@@ -375,7 +376,7 @@ What remains is updating our npm dependencies:
 
     npm uninstall file-loader
     npm uninstall ignore-emit-webpack-plugin
-    
+
     npm install elm-webpack-loader --save-dev
     npm install html-webpack-plugin --save-dev
 
@@ -389,7 +390,7 @@ Finally, update the generated `elm.json` with `src/elm` instead of just `src`, a
 
 #### v0.3.1: webpack mode [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/9da7cc3c5eb0139b0599af6e857b2466fded5590) | [deployment](https://build-ndysvvuckb.now.sh) ]
 Webpack has two modes, "development" and "production".
-By default, "production" is chosen. 
+By default, "production" is chosen.
 In "production" mode webpack does several tasks preparing the build for deployment to a production environment, e.g. minification.
 So, while developing, we explicitly choose "development".
 Add the mode in `webpack.config.json`:
@@ -421,15 +422,87 @@ app.Elm.Main.init({
     node: document.getElementById('elmContainer')
 });
 ```
+The HTML element `elmContainer` will be _replaced_ by the Elm-generated content.
 
 ### v0.4: Styling with Sass
+Choosing a strategy for styling the webapp is not straightforward any more,
+especially when one is not well-wandered in the UX domain as I am.
+
+As we have chosen Elm as our primary tool for creating the webapp, it would be natural to go with Elm's own type-safe, CSS-wrapping, styling alternative&mdash; [elm-css](https://package.elm-lang.org/packages/rtfeldman/elm-css/latest).
+That might well be what we end up doing in the end, but I feel that the present solution for styling works well enough.
+It is a separate, modular solution for the "look & feel" concern of the webapp.
+And when using a CSS extension like [Sass][sass], we have a powerful technical foundation to work with.
+Sass supports niceties like variables, nesting, inheritance, mixins, and imports.
+Also, when adhering to ad-hoc techniques for improving reusability like [BEM][bem]&mdash;Block Element Modifier, and maybe also [SMACSS][smacss]&mdash; we are well-equipped for safe and convenient styling.
+(Of course, sticking to Sass will also preserve the connection to the previous "default webapp" project&mdash;making the comparison between the two solutions easier.)
+
+...
+
+Alternatives to Sass are standard CSS, and [Less][less] (still, maybe).
+Also, encapsulation of CSS with e.g. [CSS Modules](https://github.com/css-modules/css-modules) I have chosen to skip for the moment.
+Another alternative is to go with a complete styling framework like [Twitter Bootstrap][twitter-bootstrap] (Elm port [here](https://github.com/aforemny/elm-mdc)) or [Google Material Design][google-material-design] (Elm port [here](http://elm-bootstrap.info)).
+Those seem too invasive for this minimalistic and basic setup.
+
+...
+
+The v0.4.x commits are:
+
+#### v0.4.0: Sass with webpack [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/a870fbf621de8f75e3dc35f562c0518cf8319c85) | [deployment](https://build-pwrjvwrvzv.now.sh) ]
+As Sass/CSS is a completely separate (domain-specific) programming language, it must have its own entry in webpack configuration:
+```javascript
+entry: [
+    path.join(__dirname, 'src/index.js'),
+    path.join(__dirname, 'src/scss/style.scss')
+],
+```
+...with a loader setup:
+
+```javascript
+test: /\.scss$/,
+use: [{
+    loader: 'style-loader'
+}, {
+    loader: 'css-loader'
+}, {
+    loader: 'sass-loader'
+}]
+```
+The [Sass Loader][sass-webpack-loader] turns `style.sass` into plain CSS.
+The [CSS Loader][css-webpack-loader] takes the CSS file and returns the CSS with `import`s and `url(...)` resolved via webpack's require functionality.
+The [Style Loader][style-webpack-loader] inserts those styles into the HTML page, and by that into the browser's DOM.
+(Do notice that webpack loaders are applied from the bottom up.)
+
+For the new `src/scss/style.scss` we are starting with a trivias and silly font declaration just to see it is all working:
+```sass
+@charset 'UTF-8';
+body { font-family: Comic Sans MS, cursive, sans-serif; }
+```
+...
+
+What remains is updating our npm dependencies:
+
+    npm install style-loader --save-dev
+    npm install css-loader --save-dev
+    npm install sass-loader --save-dev
+    npm install node-sass --save-dev
+
+And then build:
+
+    npm run build
+
+### v0.5: Static code analysis
 _TODO: ..._
 
-### v0.x: Live reloading & Hot reloading
+The v0.5.x commits are:
+
+#### v0.5.0: ... [ [commit]() ]
+
+### v0.6: Live reloading & Hot reloading
 _TODO: ..._
 
-### v0.x: Static code analysis
-_TODO: ..._
+The v0.6.x commits are:
+
+#### v0.6.0: ... [ [commit]() ]
 
 ### v0.x: HTML5 Boilerplate
 _TODO: ..._
@@ -453,7 +526,7 @@ _TODO: ..._
 _TODO: ..._
 
 ### v0.x: ...
-+_TODO: ..._
+_TODO: ..._
 
 
 
@@ -466,6 +539,8 @@ _TODO: ..._
 Latest greatest, always: <https://defaultwebapp.now.sh>
 
 A list of deployments with visual differences:
+- v0.4.0: <https://build-pwrjvwrvzv.now.sh>
+
 - v0.3.2: <https://build-ahhwscxgwo.now.sh>
 - v0.3.1: <https://build-ndysvvuckb.now.sh>
 - v0.3.0: <https://build-ysgfanfbnz.now.sh>
@@ -482,9 +557,11 @@ A list of deployments with visual differences:
 
 
 
+[default-webapp-heroku]: https://github.com/eirikt/default-webapp-heroku
 [serveless-framework]:https://en.wikipedia.org/wiki/Serverless_Framework
 [serverless-computing]: https://en.wikipedia.org/wiki/Serverless_computing
-
+[kata]: https://en.wikipedia.org/wiki/Kata_(programming)
+[inventing-on-principle]: https://vimeo.com/36579366
 [spa]: https://en.wikipedia.org/wiki/Single-page_application
 [responsive]: https://en.wikipedia.org/wiki/Responsive_web_design
 [pwa]: https://en.wikipedia.org/wiki/Progressive_Web_Apps
@@ -506,10 +583,21 @@ A list of deployments with visual differences:
 [elm]: http://elm-lang.org
 [elm-webpack-loader]: https://github.com/elm-community/elm-webpack-loader
 [elm-html-html]: https://package.elm-lang.org/packages/elm/html/latest/Html
+[elm-css]: https://package.elm-lang.org/packages/rtfeldman/elm-css/latest
+
+[regex]: https://en.wikipedia.org/wiki/Regular_expression
 
 [html]: https://en.wikipedia.org/wiki/HTML
 [css]: https://en.wikipedia.org/wiki/Cascading_Style_Sheets
-[regex]: https://en.wikipedia.org/wiki/Regular_expression
+[sass]: https://sass-lang.com
+[less]: http://lesscss.org
+[bem]: http://getbem.com
+[smacss]: https://smacss.com
+[sass-webpack-loader]: https://github.com/webpack-contrib/sass-loader
+[css-webpack-loader]: https://github.com/webpack-contrib/css-loader
+[style-webpack-loader]: https://github.com/webpack-contrib/style-loader
+[twitter-bootstrap]: http://getbootstrap.com
+[google-material-design]: https://material.io
 
 [grunt]: https://gruntjs.com
 [gulp]: https://gulpjs.com
@@ -521,11 +609,6 @@ A list of deployments with visual differences:
 [node]: https://nodejs.org
 [npm]: https://www.npmjs.com
 [package-json]: https://docs.npmjs.com/files/package.json
-[yarn]: https://yarnpkg.com 
+[yarn]: https://yarnpkg.com
 [react]: https://reactjs.org
 [redux]: https://redux.js.org
-[sass]: https://sass-lang.com
-
-[default-webapp-heroku]: https://github.com/eirikt/default-webapp-heroku
-[kata]: https://en.wikipedia.org/wiki/Kata_(programming)
-[inventing-on-principle]: https://vimeo.com/36579366
