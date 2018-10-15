@@ -1,6 +1,6 @@
 {
     "name": "default-webapp-elm-now",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "license": "ISC",
     "repository": {
         "type": "git",
@@ -9,10 +9,13 @@
     "scripts": {
         "setup": "npm install",
         "clean": "rimraf build & npm run clean:elm",
-        "clean:elm": "rimraf elm-stuff",
+        "clean:elm": "npm run elm:clean",
         "check:1": "npm audit",
         "check:2": "npm-check",
-        "check:3": "elm-analyse",
+        "check:3": "npm run elm:analyse",
+        "elm:clean": "rimraf elm-stuff",
+        "elm:format": "elm-format src/elm/ --yes",
+        "elm:analyse": "elm-analyse",
         "build": "webpack",
         "deploy": "npm run deploy:staging",
         "deploy:staging": "npm run setup & npm run clean & npm run build & now build --public",
