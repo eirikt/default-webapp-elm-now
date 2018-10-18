@@ -2,16 +2,16 @@
 My default (opinionated/favourite) setup for web application development&mdash;a [single-page application (SPA)][spa] with client-side rendering, to be more precise.
 (I guess that statement (the opinionated/favourite part) will remain true at least a year or so after the date of the last commit...)
 
-The main objectives of this code base are:
+The main objectives of this codebase are:
 
 - A design that _scales both technically and organizationally_
 - Opinionated&mdash;yes, but also _idiomatic_
 
-Regarding _technical scaling_&mdash;even this setup is a static webapp with trivial content, it is a complete vertical of a sound architecture&mdash;ready for a significant expansion without having to rewrite/reorganize the code base, nor having to introduce more components and tooling just to make things work better.
+Regarding _technical scaling_&mdash;even this setup is a static webapp with trivial content, it is a complete vertical of a sound architecture&mdash;ready for a significant expansion without having to rewrite/reorganize the codebase, nor having to introduce more components and tooling just to make things work better.
 [Horizontal](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling) scaling is intrinsic in this setup, and should be trivial to do.
 
 Regarding _organizational scaling_&mdash;it is just another word for _readability_ and _maintainability_.
-An important part of achieving this is a concise and compact code base&mdash;which brings us over to the most opinionated technical component in this setup&mdash;[Elm][elm].
+An important part of achieving this is a concise and compact codebase, which brings us over to the most opinionated technical component in this setup&mdash;[Elm][elm].
 Elm is a statically typed, purely functional programming language&mdash;a [family][ml-family] of programming languages that has [quite intriguing properties](#fp).
 If you haven't tried one of them, you really should.
 So, read on!
@@ -29,7 +29,8 @@ Other design decisions/components being embraced&mdash;or at least evaluated&mda
 
 These will be argued for, and introduced on the way as we go along, commit by commit, statement by statement&mdash;**stay tuned!**
 
-(This will (maybe) end up like a "web project starter", a well-documented starting-point for a project, like a boilerplate&mdash;or just a basic tutorial.
+(This is first and foremost a personal writeup.
+Yet, it will (maybe) end up like a "web project starter", a well-documented starting-point for a project, like a boilerplate&mdash;or just a basic tutorial.
 I will take a somewhat "naive approach" when growing this codebase.)
 
 A live version is hosted on [ZEIT Now][now], as [defaultwebapp.now.sh](https://defaultwebapp.now.sh).
@@ -49,11 +50,11 @@ Also, some components are kept the same, like [Sass][sass], and probably the loo
 
 
 
-Ok, the very first thing to do, is getting our new webapp online;
+OK, the very first thing to do, is getting our new webapp online;
 Deploying the most basic version imaginable of our webapp to our hosting service of choice.
 
 ## Prerequisites
-Just to be very basic and specific, the only prerequisites are:
+_To be very basic and specific_, the only prerequisites are:
 - Some knowledge of English
 - A computer, a steady supply of electric power, and network connectivity
 - An email account and an email client&mdash;signed in
@@ -65,80 +66,86 @@ Then:
 
    While at it&mdash;update npm (which release cycle is more frequent than Node.js'):
 
-       npm install npm@latest --global
+   ```bash
+   npm install npm@latest --global
+   ```
 
-1. Create a project folder&mdash;and at that location, open a command line terminal.
+1. **Name your project/webapp**&mdash;first and foremost you need an official (natural language) name.
+Then create:
+   - a source-code-friendly name variant with no whitespace characters
+   - a URL-friendly name variant with no whitespace characters, and lowercase characters only (hyphens allowed)
+1. Using the new name, **create a project folder**&mdash;and at that location, open your command-line interface (CLI) of choice.
 
 ### ZEIT Now: Deployment to staging
 Deploy/Publish your webapp using [ZEIT Now][now].
 Let's get our first version online in an instance:
-
-    now
-
+```bash
+now
+```
 That fails&mdash;unknown command&mdash;install the ZEIT Now client:
-
-    npm install now@latest --global
-
+```bash
+npm install now@latest --global
+```
 Try again:
-
-    now
-
+```bash
+now
+```
 That fails&mdash;nothing to deploy&mdash;add a file to deploy (e.g. in a Windows Command Prompt):
-
-    TYPE NUL > index.txt
-
+```bash
+TYPE NUL > index.txt
+```
 Try again:
-
-    now
-
+```bash
+now
+```
 If you don't have an account yet;
 _Type in your email address_&mdash;_go to your email client_&mdash;_verify your email address_.
 You now have a ZEIT Now account - also, you are now signed in.
 
 Try again:
-
-    now
-
+```
+now
+```
 Give the deployment confirmation a '`y`' - and that's it!
 **Your webapp is online** - the very, very first version of it that is...
 
 Paste the given URL into a browser tab and have a look.
 The deployed webapp is not particularly interesting&mdash;it is completely empty.
 Ok, let us create our very first version with some actual content (again e.g. in a Windows Command Prompt):
-
-    ECHO Default Webapp - Elm and ZEIT Now edition (v0.1.1) > index.txt
-
+```bash
+ECHO Default Webapp - ZEIT Now edition (v0.1.1) > index.txt
+```
 Deploy (again):
-
-    now
-
+```
+now
+```
 ### ZEIT Now: Deployment to production
 ZEIT Now auto-generates a URL for the commissioned resource.
 It is to be regarded as a staging area for your deployment.
-_To fully put the webapp into production, "alias" the staged area to your preferred URL_, like this:
-
-    now alias ${project folder name}-${auto-generated staging-id}.now.sh ${my-webapp-id}
-
+_To fully put the webapp into production, then "alias" the staged area to your preferred URL_, like this:
+```bash
+now alias ${project folder name}-${auto-generated staging-id}.now.sh ${my-webapp-id}
+```
 E.g.:
-
-    now alias default-webapp-elm-now-olkrehlqms.now.sh defaultwebapp
-
+```bash
+now alias default-webapp-elm-now-olkrehlqms.now.sh defaultwebapp
+```
 ### ZEIT Now: More convenient deployment to production
 Creating all those staging-to-production aliasing commands can be cumbersome.
 ZEIT Now has a configuration file&mdash;`now.json`&mdash;that helps out with that.
 `now.json` has a property `alias` which will be assigned to the latest deployment when running `now alias` (with no arguments).
 So, e.g., for automating deployment to my default webapp `defaultwebapp`:
-
-    ECHO {"alias":"defaultwebapp"} > now.json
-
+```bash
+ECHO {"alias":"defaultwebapp"} > now.json
+```
 Update "content":
-
-    ECHO Default Webapp - Elm and ZEIT Now edition (v0.1.2) > index.txt
-
+```bash
+ECHO Default Webapp - ZEIT Now edition (v0.1.2) > index.txt
+```
 Now, to deploy to staging, _and_ at the same time, create a production alias of the deployment, just:
-
-    now --public & now alias
-
+```bash
+now --public & now alias
+```
 Check out this easy-to-remember URL, <https://defaultwebapp.now.sh> in all browsers available.
 
 Do notice that a certificate for the site is on-the-fly generated (thanks to [letsencrypt.org](https://letsencrypt.org)).
@@ -146,7 +153,6 @@ Do notice that a certificate for the site is on-the-fly generated (thanks to [le
 
 
 * * *
-
 
 
 ## Changelog
@@ -190,6 +196,8 @@ All project meta-information and package/component dependencies goes in its `pac
 
 We start with a vanilla `package.json`, which we will extend in the following commits.
 
+...
+
 An alternative to npm is [yarn][yarn].
 Yarn and npm has, at the moment, quite similar functionality&mdash;so being the "original" and bundled with Node.js, npm is the more idiomatic choice.
 
@@ -217,6 +225,8 @@ Loaders allow webpack to process other types of files and convert them into vali
    - `use` indicates which loader should be used to do the transforming of the files identified by the `test` entries
 
 1. _Plugins_&mdash;While loaders are used to transform certain types of "resource modules", plugins can be leveraged to perform a wider range of tasks like bundle optimization, asset management and injection of environment variables.
+
+...
 
 Alternatives to webpack are [Grunt][grunt], [Gulp][gulp], and [Parcel][parcel].
 I must admit I am not a huge webpack fan&mdash;I find the API semantics a bit confusing and overly complicated.
@@ -250,17 +260,17 @@ Add our first npm script/task/command in `package.json`:
 ```
 
 Install and add webpack as a development dependency in `project.json`:
+```bash
+npm install webpack --save-dev
+npm install webpack-cli --save-dev
 
-    npm install webpack --save-dev
-    npm install webpack-cli --save-dev
-
-    npm install file-loader --save-dev
-    npm install ignore-emit-webpack-plugin --save-dev
-
+npm install file-loader --save-dev
+npm install ignore-emit-webpack-plugin --save-dev
+```
 And run our scripted new task:
-
-    npm run build
-
+```bash
+npm run build
+```
 #### v0.2.4: Semantic project tasks [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/93a7c1bb1b81b2b3ffb05a9c529d1c91678bdd0f) | [deployment](https://build-vwmktnocgx.now.sh) ]
 In our `package.json`, (simple) scripts for project tasks/phases are added&mdash;chronologically:
 1. _setup_
@@ -270,13 +280,13 @@ In our `package.json`, (simple) scripts for project tasks/phases are added&mdash
 1. _deploy to production_
 
 At all times we can list all npm scripts/tasks/commands with:
-
-    npm run
-
+```bash
+npm run
+```
 So from now on we can, e.g. deploy (from scratch) to staging with a single command:
-
-    npm run deploy
-
+```bash
+npm run deploy
+```
 ### v0.3: Using Elm
 [Elm][elm] is a statically typed, pure functional programming language.
 By that, it brings (by default, out-of-the-box) <a name="fp">good stuff</a> like:
@@ -295,8 +305,6 @@ In team settings with long-going projects it is merely impossible.
 <p lang="en" dir="ltr">We all know inheritance is full of pitfalls and often produces code that evolves poorly when requirements change. Imagine if there were languages designed around it being the primary code reuse mechanism. Imagine if they were mainstream! Hmm 🤔</p>
 &mdash; <cite>Dan Abramov (@dan_abramov)</cite> <a href="https://twitter.com/dan_abramov/status/990989827981094912?ref_src=twsrc%5Etfw">April 30, 2018</a>
 </blockquote>
-<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 
 The facilitating, "nudging", and enforcement of code reuse in statically typed functional programming languages is quite a different story&mdash;as mentioned above,, you should try it out!
 
@@ -349,8 +357,9 @@ So, we add a `src/index.js` file, in which we do two things:
    (A core Elm package is imported and used, [elm/html/Html][elm-html-html].)
 
    ###### Elm-webpack-loader
-   To parse and transpile Elm to JavaScript, we need to add a webpack loader, the [Elm loader][elm-webpack-loader] (`elm-webpack-loader`):
-   ```
+   To parse and transpile Elm to JavaScript, we need to add a webpack loader, the [Elm loader][elm-webpack-loader] (`elm-webpack-loader`).
+   In `webpack.config.js`, add:
+   ```javascript
    module: {
        rules: [{
            test: /\.elm$/,
@@ -373,17 +382,17 @@ So, we add a `src/index.js` file, in which we do two things:
 
 We are ready for the new build.
 What remains is updating our npm dependencies:
+```bash
+npm uninstall file-loader
+npm uninstall ignore-emit-webpack-plugin
 
-    npm uninstall file-loader
-    npm uninstall ignore-emit-webpack-plugin
-
-    npm install elm-webpack-loader --save-dev
-    npm install html-webpack-plugin --save-dev
-
+npm install elm-webpack-loader --save-dev
+npm install html-webpack-plugin --save-dev
+```
 And then build:
-
-    npm run build
-
+```bash
+npm run build
+```
 ...
 
 Finally, update the generated `elm.json` with `src/elm` instead of just `src`, and add the new output folder `elm-stuff` in the `.gitignore` file.
@@ -394,17 +403,18 @@ By default, "production" is chosen.
 In "production" mode webpack does several tasks preparing the build for deployment to a production environment, e.g. minification.
 So, while developing, we explicitly choose "development".
 Add the mode in `webpack.config.json`:
-```
+```javascript
 const config = {
     mode: 'development',
     ...
+}
 ```
 
 #### v0.3.2: Using an HTML template [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/47627c4b9c371923e890611c8a6a3aab0ce6d6cc) | [deployment](https://build-ahhwscxgwo.now.sh) ]
 The [HTML Webpack Plugin][html-webpack-plugin] can generate the `index.html` from scratch, as it is doing now.
 But also, it can create it based on a _template file_.
 That is preferable, as it gives us both more control and convenience.
-Add the `template` option in the [HTML Webpack Plugin][html-webpack-plugin] configuration:
+Add the `template` option in the HTML Webpack Plugin configuration:
 ```javascript
 plugins: [
     new HtmlWebpackPlugin({
@@ -426,15 +436,15 @@ The HTML element `elmContainer` will be _replaced_ by the Elm-generated content.
 
 ### v0.4: Styling with Sass
 Choosing a strategy for styling the webapp is not straightforward any more,
-especially when one is not well-wandered in the UX domain as I am.
+especially when one is not well-wandered in the UX domain.
 
 As we have chosen Elm as our primary tool for creating the webapp, it would be natural to go with Elm's own type-safe, CSS-wrapping, styling alternative&mdash; [elm-css](https://package.elm-lang.org/packages/rtfeldman/elm-css/latest).
 That might well be what we end up doing in the end, but I feel that the present solution for styling works well enough.
 It is a separate, modular solution for the "look & feel" concern of the webapp.
-And when using a CSS extension like [Sass][sass], we have a powerful technical foundation to work with.
+And when using a CSS extension like [Sass][sass] (or specifically SCSS, "Sassy CSS"), we have a powerful technical foundation to work with.
 Sass supports niceties like variables, nesting, inheritance, mixins, and imports.
 Also, when adhering to ad-hoc techniques for improving reusability like [BEM][bem]&mdash;Block Element Modifier, and maybe also [SMACSS][smacss]&mdash; we are well-equipped for safe and convenient styling.
-(Of course, sticking to Sass will also preserve the connection to the previous "default webapp" project&mdash;making the comparison between the two solutions easier.)
+(Of course, sticking to Sass will also preserve the connection to my previous ["default webapp"][default-webapp-heroku] project&mdash;making the comparison between the two solutions easier.)
 
 ...
 
@@ -472,30 +482,128 @@ The [CSS Loader][css-webpack-loader] takes the CSS file and returns the CSS with
 The [Style Loader][style-webpack-loader] inserts those styles into the HTML page, and by that into the browser's DOM.
 (Do notice that webpack loaders are applied from the bottom up.)
 
-For the new `src/scss/style.scss` we are starting with a trivias and silly font declaration just to see it is all working:
+For the new `src/scss/style.scss` we are starting with a trivial and silly font declaration just to see that things are working:
 ```sass
-@charset 'UTF-8';
+@charset "UTF-8";
 body { font-family: Comic Sans MS, cursive, sans-serif; }
 ```
 ...
 
 What remains is updating our npm dependencies:
-
-    npm install style-loader --save-dev
-    npm install css-loader --save-dev
-    npm install sass-loader --save-dev
-    npm install node-sass --save-dev
-
+```bash
+npm install style-loader --save-dev
+npm install css-loader --save-dev
+npm install sass-loader --save-dev
+npm install node-sass --save-dev
+```
 And then build:
-
-    npm run build
+```bash
+npm run build
+```
 
 ### v0.5: Static code analysis
-_TODO: ..._
+Before (finally) starting on the actual building of the visual parts of the webapp, let us have a look at tooling.
+
+Establishing some, uhm, common "values" for the codebase is helpful for the alleged _organizational scaling_.
+Manual code reviews are fine and well, but externalizing as much of coding concerns as possible is preferable&mdash;"objective truths" tend not to create grudges in the same way "subjective truths" may.
+Automated feedback is also preferable over manual tasks, always.
+
+Elm gives us static code analysis in the form of strict, enforced static type checking and enforcement.
+Let us extend the build-time checking with things like:
+- Code style
+- Coding idioms
+- Third-party versions
+- Third-party licenses
+
+These are concerns that can be _enforced_, e.g. by tools like [git-hooks-plus](https://www.npmjs.com/package/git-hooks-plus),
+or quite easy with the [husky](https://github.com/typicode/husky)/[lint-staged](https://github.com/okonet/lint-staged) combo.
+A clear candidate for such enforcement is Elm source code formatting, which has its own established code style rules.
+Still, I choose not to include that kind of automation yet, maybe later.
+
+...
+
+Alternatives to the internal tools below are the plethora of external services, e.g. those available as [GitHub Apps](https://github.com/marketplace/).
+As none of those supports Elm (for some strange reason), let us use local tools for now.
+
+...
 
 The v0.5.x commits are:
 
-#### v0.5.0: ... [ [commit]() ]
+#### v0.5.0: `npm audit`, for known security issues [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/7c93447c1082a4e12dec6634d9e722f972c6a085) ]
+npm now includes a tool for running security audits, `npm audit`.
+Let us add it as our `check:1` task.
+
+#### v0.5.1: `npm-check`, for third-party component versions [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/090dba3c56bdcd579a5049f7b5c764f80a7b26b1) ]
+npm also includes a tool for checking versions for third-party dependencies, `npm outdated`.
+Yet, the external package [`npm-check`](https://www.npmjs.com/package/npm-check) does a slightly better job of presenting its findings.
+(Its 'unused dependency' check does not yet support webpack though, but I am sure [it will soon](https://github.com/dylang/npm-check/issues/304)...)
+```bash
+npm install npm-check --save-dev
+```
+Let us add it as our `check:2` task.
+
+#### v0.5.2: `npm update` [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/3f68c3947575b0d3b44a637ceeff3ae8d482c10a) ]
+Based on our newly created task:
+```bash
+npm run check:2
+```
+It suggested, at the time of writing, these packages to be upgraded:
+```bash
+npm update webpack
+npm update webpack-cli
+npm update node-sass
+npm update style-loader
+```
+
+#### v0.5.3: `elm-analysis`, for Elm code style and idioms [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/9c74b615406f472d1c195379beaa2aa2eef065fd) ]
+[Elm Analyse][elm-analyse] analyses your Elm code, identifies deficiencies and applies best practices.
+```bash
+npm install elm-analyse --save-dev
+```
+Let us add it as our `check:3` task.
+
+**NB!** As of now, Elm Analyse [does not yet support Elm v0.19](https://github.com/stil4m/elm-analyse/issues/176)!
+So this task is not applicable until it does.
+But also, Elm Analyse has to replace its outdated [open](https://github.com/jjrdn/node-open) dependency, otherwise we sadly have to ditch this excellent tool.
+
+#### v0.5.4: `elm-format`, for Elm code style [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/db65850d4f9c36ac4807cbb2d2628c61a4734b91) ]
+Elm has included and established some modern features, making it stand out amongst programming languages.
+One of them is _enforced [semantic versioning][semver]_.
+Elm detects all API changes automatically (thanks to its type system), and uses that information to guarantee that every single Elm package follows semantic versioning precisely.
+Another "feature" is _official and well-established code style_.
+It is not enforced out-of-the-box, but can be automatically applied by the [elm-format][elm-format] tool.
+
+Add it:
+```bash
+npm install elm-format --save-dev
+```
+By the way, there is really no reason not to add it as a global package:
+```bash
+npm install elm-format --global
+```
+And create a task in `package.json` that formats all our Elm code:
+```json
+"elm:format": "elm-format src/elm/ --yes",
+```
+
+#### v0.5.5: `sass-lint`, for Sass code style and idioms [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/096ad5ce10d9ef936a4f04c1ae9e257ac1851d66) ]
+The other main programming languages involved in our little project is Sass.
+Sass has [linters](https://en.wikipedia.org/wiki/Lint_(software)) too, e.g. [Sass Lint][sass-lint]:
+```bash
+npm install sass-lint --save-dev
+```
+Sass Lint can be configured from a `.sass-lint.yml` or `.sasslintrc` file in your project.
+We will not do that yet&mdash;rather we will just follow the [default configuration](https://github.com/sasstools/sass-lint/blob/master/lib/config/sass-lint.yml).
+
+#### v0.5.6: EditorConfig.org, for common IDE behaviour [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/bc8d70d1772dc84aee815250b4de7f4782ca29ae) ]
+A nice text editor (or even an integrated development environment (IDE)) is part of software development.
+Even we are somewhat restricting individual preferences in this setup, the IDE should be free of choice.
+To "preserve organizational scaling" concerns, we are creating a common ground for IDEs with EditorConfig.
+That consolidates e.g. issues like _[whitespace](https://en.wikipedia.org/wiki/Whitespace_character) handling_&mdash;important for avoiding unnecessary version differences.
+
+So, the text editors/IDEs used by project developers should support EditorConfig internally or via a plugin.
+The list of text editors/IDEs having support for EditorConfig is to be found [here](https://editorconfig.org/#download).
+I use [Atom][atom] with the [EditorConfig plugin](https://github.com/sindresorhus/atom-editorconfig) installed.
 
 ### v0.6: Live reloading & Hot reloading
 _TODO: ..._
@@ -522,7 +630,13 @@ _TODO: ..._
 ### v0.x: Elm: Utilizing [FaaS](https://en.wikipedia.org/wiki/Function_as_a_service) resources
 _TODO: ..._
 
-### v0.x: [Bonus] Elm: "Desktop App" / [Electron][electronjs]
+### v0.x: Elm: "Desktop App" / [Electron][electronjs]
+_TODO: ..._
+
+### v0.x: Immutable infrastructure / A build pipeline using containers
+_TODO: ..._
+
+### v0.x: Chaos engeneering / Runtime forensics
 _TODO: ..._
 
 ### v0.x: ...
@@ -584,7 +698,10 @@ A list of deployments with visual differences:
 [elm-webpack-loader]: https://github.com/elm-community/elm-webpack-loader
 [elm-html-html]: https://package.elm-lang.org/packages/elm/html/latest/Html
 [elm-css]: https://package.elm-lang.org/packages/rtfeldman/elm-css/latest
+[elm-format]: https://github.com/avh4/elm-format
+[elm-analyse]: https://stil4m.github.io/elm-analyse/
 
+[semver]:https://semver.org
 [regex]: https://en.wikipedia.org/wiki/Regular_expression
 
 [html]: https://en.wikipedia.org/wiki/HTML
@@ -596,6 +713,7 @@ A list of deployments with visual differences:
 [sass-webpack-loader]: https://github.com/webpack-contrib/sass-loader
 [css-webpack-loader]: https://github.com/webpack-contrib/css-loader
 [style-webpack-loader]: https://github.com/webpack-contrib/style-loader
+[sass-lint]: https://github.com/sasstools/sass-lint
 [twitter-bootstrap]: http://getbootstrap.com
 [google-material-design]: https://material.io
 
