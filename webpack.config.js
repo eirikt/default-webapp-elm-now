@@ -15,6 +15,8 @@ const config = {
         rules: [{
             test: /\.elm$/,
             use: [{
+                loader: 'elm-hot-webpack-loader'
+            }, {
                 loader: 'elm-webpack-loader'
             }]
         }, {
@@ -32,7 +34,14 @@ const config = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.template.html')
         })
-    ]
-}
+    ],
+    devServer: {
+        port: 9000,
+        overlay: {
+            warnings: true, // NB! Very strict indeed - ok at project start
+            errors: true
+        }
+    },
+};
 
 module.exports = config;
