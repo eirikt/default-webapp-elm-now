@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-    mode: 'development',
     entry: [
         path.join(__dirname, 'src/index.js'),
         path.join(__dirname, 'src/scss/style.scss')
@@ -30,11 +29,6 @@ const config = {
             }]
         }]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src/index.template.html')
-        })
-    ],
     devServer: {
         port: 9000,
         overlay: {
@@ -44,4 +38,44 @@ const config = {
     },
 };
 
-module.exports = config;
+let htmlWebpackPluginConfig = {
+    template: path.join(__dirname, 'src/index.template.html')
+};
+
+module.exports = (env, argv) => {
+    console.log('Webpack build mode: ' + argv.mode);
+
+    if (argv.mode === 'production') {
+        console.log('Removing \'devServer\'...');
+        delete config.devServer;
+
+        console.log('Removing \'elm-hot-webpack-loader\'...');
+        delete config.module.rules[0].use.shift();
+
+        console.log('Executing \'elm make\' with \'--optimize\' flag...');
+        config.module.rules[0].use[0].options = {
+            optimize: true
+        };
+
+        console.log('Minifying HTML...');
+        htmlWebpackPluginConfig.minify = {
+            collapseWhitespace: true,
+            removeComments: true
+        }
+
+    } else { // => 'development'
+        console.log('Executing \'elm make\' with \'--optimize\' flag...');
+        config.module.rules[0].use[1].options = {
+            debug: true // Add Elm's debug overlay to output
+        };
+    }
+
+    config.plugins = [
+        new HtmlWebpackPlugin(htmlWebpackPluginConfig)
+    ]
+
+    // "Prettyprint" webpack config
+    console.log('Webpack config: ' + JSON.stringify(config, null, 2));
+
+    return config;
+};

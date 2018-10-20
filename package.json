@@ -1,6 +1,6 @@
 {
     "name": "default-webapp-elm-now",
-    "version": "0.6.1",
+    "version": "0.6.2",
     "license": "ISC",
     "repository": {
         "type": "git",
@@ -17,10 +17,15 @@
         "elm:clean": "rimraf elm-stuff",
         "elm:format": "elm-format src/elm/ --yes",
         "elm:analyse": "elm-analyse",
-        "dev": "webpack-dev-server --hot",
-        "build": "webpack",
+        "dev": "npm run setup & webpack-dev-server --mode=development --hot",
+        "build": "npm run build:production",
+        "build:quick": "webpack --mode=development",
+        "build:dev": "npm run build:development",
+        "build:development": "npm run setup & npm run build:quick",
+        "build:prod": "npm run build:production",
+        "build:production": "npm run setup & webpack --mode=production",
         "deploy": "npm run deploy:staging",
-        "deploy:staging": "npm run setup & npm run clean & npm run build & now build --public",
+        "deploy:staging": "npm run clean & npm run build:production & now build",
         "deploy:prod": "npm run deploy:production",
         "deploy:production": "now alias"
     },
