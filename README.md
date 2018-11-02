@@ -2,36 +2,9 @@
 My default (opinionated/favourite) setup for web application development&mdash;a [single-page application (SPA)][spa] with client-side rendering, to be more precise.
 (I guess that statement (the opinionated/favourite part) will remain true at least a year or so after the date of the last commit...)
 
-The main objectives of this codebase are:
-
-- A design that _scales both technically and organizationally_
-- Opinionated&mdash;yes, but also _idiomatic_
-
-Regarding _technical scaling_&mdash;even this setup is a static webapp with trivial content, it is a complete vertical of a sound architecture&mdash;ready for a significant expansion without having to rewrite/reorganize the codebase, nor having to introduce more components and tooling just to make things work better.
-[Horizontal](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling) scaling is intrinsic in this setup, and should be trivial to do.
-
-Regarding _organizational scaling_&mdash;it is just another word for _readability_ and _maintainability_.
-An important part of achieving this is a concise and compact codebase, which brings us over to the most opinionated technical component in this setup&mdash;[Elm][elm].
-Elm is a statically typed, purely functional programming language&mdash;a [family][ml-family] of programming languages that has [quite intriguing properties](#fp).
-If you haven't tried one of them, you really should.
-So, read on!
-
-...
-
-Other design decisions/components being embraced&mdash;or at least evaluated&mdash;in this project are/will be:
-
-- Short feedback loops (Micro-iterations)
-- [Responsive design][responsive] (of course)
-- [Progressive Web Apps][pwa]
-- A ["serverless"][serverless-computing] approach
-- A ["Continous integration/continuous deployment" (CI/CD) ][ci-cd] setup
-- ...
-
-These will be argued for, and introduced on the way as we go along, commit by commit, statement by statement&mdash;**stay tuned!**
-
-(This is first and foremost a personal writeup.
+This is first and foremost a personal writeup.
 Yet, it will (maybe) end up like a "web project starter", a well-documented starting-point for a project, like a boilerplate&mdash;or just a basic tutorial.
-I will take a somewhat "naive approach" when growing this codebase.)
+I will take a somewhat "naive approach" when growing this codebase&mdash;arguing for and introducing features and tooling on the way as we go along, commit by commit, statement by statement&mdash;**stay tuned!**
 
 A live version is hosted on [ZEIT Now][now], as [defaultwebapp.now.sh](https://defaultwebapp.now.sh).
 
@@ -156,6 +129,7 @@ Do notice that a certificate for the site is on-the-fly generated (thanks to [le
 
 
 ## Changelog
+Growing the capabilities of this project setup, and the webapp itself&mdash;Commit by commit.
 
 ### v0.1: Establish project and deploy to ZEIT Now
 The v0.1.x commits are:
@@ -296,25 +270,9 @@ By that, it brings (by default, out-of-the-box) <a name="fp">good stuff</a> like
 
 - Partial function application&mdash;which enables [currying](https://en.wikipedia.org/wiki/Currying), which facilitates creating highly reusable "configurable" functions
 
-These properties, in addition to the fact that _pure_ functional programming languages tends to enforce them, are seminal properties for the alleged _organizational scaling_ (mentioned at the top).
-Take e.g. _code reuse_, which for procedural or object-oriented programming languages just does not work!
-It is possible in some degree, but requires extensive work and discipline.
-In team settings with long-going projects it is merely impossible.
-
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">We all know inheritance is full of pitfalls and often produces code that evolves poorly when requirements change. Imagine if there were languages designed around it being the primary code reuse mechanism. Imagine if they were mainstream! Hmm 🤔</p>
-&mdash; <cite>Dan Abramov (@dan_abramov)</cite> <a href="https://twitter.com/dan_abramov/status/990989827981094912?ref_src=twsrc%5Etfw">April 30, 2018</a>
-</blockquote>
-
-The facilitating, "nudging", and enforcement of code reuse in statically typed functional programming languages is quite a different story&mdash;as mentioned above,, you should try it out!
-
-...
-
 Elm [transpiles](https://en.wikipedia.org/wiki/Source-to-source_compiler) to ECMAScript 5. Hence, without any further transpiling, leaves Internet Explorer 8 and all those even more ancient browsers behind.
 
-...
-
-[Install](https://guide.elm-lang.org/install.html) Elm.
+Well, [install](https://guide.elm-lang.org/install.html) Elm.
 
 ...
 
@@ -449,7 +407,7 @@ Also, when adhering to ad-hoc techniques for improving reusability like [BEM][be
 ...
 
 Alternatives to Sass are standard CSS, and [Less][less] (still, maybe).
-Also, encapsulation of CSS with e.g. [CSS Modules](https://github.com/css-modules/css-modules) I have chosen to skip for the moment.
+Also, encapsulation and scoping of CSS with e.g. [CSS Modules][css-modules] or [CSS Blocks][css-blocks] I have chosen to skip for the moment.
 Another alternative is to go with a complete styling framework like [Twitter Bootstrap][twitter-bootstrap] (Elm port [here](https://github.com/aforemny/elm-mdc)) or [Google Material Design][google-material-design] (Elm port [here](http://elm-bootstrap.info)).
 Those seem too invasive for this minimalistic and basic setup.
 
@@ -502,7 +460,7 @@ npm run build
 ```
 
 ### v0.5: Static code analysis
-Before (finally) starting on the actual building of the visual parts of the webapp, let us have a look at tooling.
+Before starting on the actual building of the visual parts of the webapp, let us have a look at tooling.
 
 Establishing some, uhm, common "values" for the codebase is helpful for the alleged _organizational scaling_.
 Manual code reviews are fine and well, but externalizing as much of coding concerns as possible is preferable&mdash;"objective truths" tend not to create grudges in the same way "subjective truths" may.
@@ -595,10 +553,10 @@ npm install sass-lint --save-dev
 Sass Lint can be configured from a `.sass-lint.yml` or `.sasslintrc` file in your project.
 We will not do that yet&mdash;rather we will just follow the [default configuration](https://github.com/sasstools/sass-lint/blob/master/lib/config/sass-lint.yml).
 
-#### v0.5.6: EditorConfig.org, for common IDE behaviour [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/bc8d70d1772dc84aee815250b4de7f4782ca29ae) ]
-A nice text editor (or even an integrated development environment (IDE)) is part of software development.
+#### v0.5.6: EditorConfig, for common IDE behaviour [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/bc8d70d1772dc84aee815250b4de7f4782ca29ae) ]
+A nice, beloved text editor (or even a full-blown, hopefully not full-bloated, integrated development environment (IDE)) is an integral part of a software developer's life.
 Even we are somewhat restricting individual preferences in this setup, the IDE should be free of choice.
-To "preserve organizational scaling" concerns, we are creating a common ground for IDEs with EditorConfig.
+To "preserve organizational scaling" concerns, we are creating a common ground for IDEs with [EditorConfig](https://editorconfig.org), IDE-agnostic editor configurations.
 That consolidates e.g. issues like _[whitespace](https://en.wikipedia.org/wiki/Whitespace_character) handling_&mdash;important for avoiding unnecessary version differences.
 
 So, the text editors/IDEs used by project developers should support EditorConfig internally or via a plugin.
@@ -606,19 +564,135 @@ The list of text editors/IDEs having support for EditorConfig is to be found [he
 I use [Atom][atom] with the [EditorConfig plugin](https://github.com/sindresorhus/atom-editorconfig) installed.
 
 ### v0.6: Live reloading & Hot reloading
-_TODO: ..._
+Before (finally) starting on the actual building of the visual parts, let us set up a smooth development environment where the goal is fast and frequent micro-iterations, making short feedback loops possible.
+The principle of short feedback loops when developing are discussed e.g. in Brett Victor's excellent [talk](https://vimeo.com/36579366), in which he talks about the necessity of having an immediate connection with what you create.
+
+...
 
 The v0.6.x commits are:
 
-#### v0.6.0: ... [ [commit]() ]
+#### v0.6.0: Developing with _live reloading_ [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/e41d1b22a9ba6d70cd9d4dab5c204282002811f2) ]
+"Live reloading" means that the entire webapp is reloaded for every change we do in our codebase.
+It is like automatic pushing of `F5`.
 
-### v0.x: HTML5 Boilerplate
+This is easily implemented by using webpack's [DevServer](https://github.com/webpack/webpack-dev-server).
+
+Add it as a script/task/command in `package.json`:
+```json
+"scripts": {
+    ...
+    "dev": "webpack-dev-server",
+    ...
+},
+```
+Install it:
+```bash
+npm install webpack-dev-server --save-dev
+```
+...and run it:
+```bash
+npm run dev
+```
+Now, go to <http://localhost:8080>.
+Check if live reloading works&mdash;all files in `src` folder should be monitored for changes.
+
+#### v0.6.1: Even better, developing with _hot reloading_ [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/d15f7c8878781b99128b3d4ec0fc5f6abc98b231) ]
+"Hot reloading" means that just the DOM elements that have altered content are being updated (by directly manipulating the DOM).
+That leads to a more "smooth" developer experience than "live reloading" provides.
+Also, this is how the actual user experience will be, because this is accomplished by the one-directionally data flow which Elm utilizes.
+
+This is easily implemented by using [elm-hot-webpack-loader](https://github.com/klazuka/elm-hot-webpack-loader).
+
+Add a `--hot` flag to the `dev` task:
+```json
+"dev": "webpack-dev-server --hot",
+```
+In `webpack.config.js`, add:
+```javascript
+{ loader: 'elm-hot-webpack-loader' }
+```
+...as the first `use` element for Elm files.
+
+Also, while at it, add webpack DevServer config at the bottom:
+```javascript
+devServer: {
+    port: 9000,
+    overlay: {
+        warnings: true, // NB! Very strict indeed - ok at project start
+        errors: true
+    }
+},
+```
+(Port 9000 stands out better as 'dev' than 8080, I think.)
+Overlays for compiler warnings and errors are feedback as immediate as it gets.
+
+Install it:
+```bash
+npm install elm-hot-webpack-loader --save-dev
+```
+...and run it:
+```bash
+npm run dev
+```
+Now, go to <http://localhost:9000>.
+Check if live reloading works (use F12)&mdash;all files in `src` folder should be monitored for changes.
+
+NB! Hot reloading does not work in any version of Internet Explorer.
+
+#### v0.6.2: Building for production [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/f11013ca859786f3f951c5fbd94a8d33bbee82e7) ]
+Now, when building the solution with:
+```bash
+npm run build
+```
+...the main deployable artefact `index.js` ends up being 121KB&mdash;a quite large "Hello World"!
+That is all fine and well when developing, but for production artefacts which is going over the wire, they need to be as small as possible.
+So let us minify the artefacts when building for production.
+
+Firstly, remove the hardcoded build mode in `webpack.config.js`:
+```javascript
+mode: 'development',
+```
+Then add the build mode as arguments to webpack:
+```json
+"build:development": "webpack --mode=development",
+"build:production": "webpack --mode=production",
+```
+There are several ways to implement build modes in webpack.
+One strategy is to have separate webpack config files, typically one for development and one for production.
+Here, we are using another strategy; One common config file in which we manipulate the configuration depending on the build mode provided.
+We can do this by intercepting (via Node.js/CommonJS mechanisms) the building of the webpack configuration object, e.g. like this:
+```javascript
+module.exports = (env, argv) => {
+    console.log('Webpack build mode: ' + argv.mode);
+
+    if (argv.mode === 'production') {
+        ...
+    } else {
+        // 'development'
+        ...
+    }
+    ...
+
+    // "Prettyprint" webpack config
+    console.log('Webpack config: ' + JSON.stringify(config, null, 2));
+
+    return config;
+}
+```
+The webpack config file with this look a bit more messy/imperative though...
+
+### v0.7: HTML5 Boilerplate / Building the site
+Then, finally, we have the needed structure in place&mdash;we are ready for the actual building of the visual parts of the webapp again.
+
 _TODO: ..._
 
 ### v0.x: The Elm Architecture
 _TODO: ..._
 
 ### v0.x: Elm: Communicating with the outside world
+_TODO: ..._
+
+### v0.x: Elm: Testing
 _TODO: ..._
 
 ### v0.x: Elm: "Offline first", using Service Workers
@@ -675,7 +749,7 @@ A list of deployments with visual differences:
 [serveless-framework]:https://en.wikipedia.org/wiki/Serverless_Framework
 [serverless-computing]: https://en.wikipedia.org/wiki/Serverless_computing
 [kata]: https://en.wikipedia.org/wiki/Kata_(programming)
-[inventing-on-principle]: https://vimeo.com/36579366
+[technical-debt]: https://en.wikipedia.org/wiki/Technical_debt
 [spa]: https://en.wikipedia.org/wiki/Single-page_application
 [responsive]: https://en.wikipedia.org/wiki/Responsive_web_design
 [pwa]: https://en.wikipedia.org/wiki/Progressive_Web_Apps
@@ -708,6 +782,8 @@ A list of deployments with visual differences:
 [css]: https://en.wikipedia.org/wiki/Cascading_Style_Sheets
 [sass]: https://sass-lang.com
 [less]: http://lesscss.org
+[css-modules]: https://github.com/css-modules/css-modules
+[css-blocks]: https://css-blocks.com
 [bem]: http://getbem.com
 [smacss]: https://smacss.com
 [sass-webpack-loader]: https://github.com/webpack-contrib/sass-loader

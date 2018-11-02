@@ -64,9 +64,9 @@ module.exports = (env, argv) => {
         }
 
     } else { // => 'development'
-        console.log('Executing \'elm make\' with \'--optimize\' flag...');
+        console.log('Adding Elm\'s debug overlay to output...');
         config.module.rules[0].use[1].options = {
-            debug: true // Add Elm's debug overlay to output
+            debug: true
         };
     }
 
