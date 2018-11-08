@@ -1,6 +1,6 @@
 {
     "name": "default-webapp-elm-now",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "license": "ISC",
     "repository": {
         "type": "git",
@@ -30,6 +30,7 @@
         "deploy:production": "now alias"
     },
     "devDependencies": {
+        "copy-webpack-plugin": "^4.6.0",
         "css-loader": "^1.0.0",
         "elm-analyse": "^0.15.0",
         "elm-hot-webpack-loader": "^1.0.2",
