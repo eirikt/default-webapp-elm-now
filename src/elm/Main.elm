@@ -1,14 +1,33 @@
 module Main exposing (main)
 
 import Browser
-import Html
+import Html exposing (Html)
 
 
+type alias Model =
+    String
+
+
+initialModel : Model
+initialModel =
+    "Default Webapp | Elm & ZEIT Now edition [v0.7.5]"
+
+
+view : Model -> Html Never
+view model =
+    Html.text model
+
+
+update : Never -> Model -> Model
+update msg model =
+    -- Never invoked ('init' is the only "update", no user events yet)
+    "N/A"
+
+
+main : Program () Model Never
 main =
     Browser.sandbox
-        { init = "Default Webapp | Elm & ZEIT Now edition [v0.7.4]"
-        , view = \model -> Html.text model
-
-        -- Never invoked ('init' is the only "update", no user events yet)
-        , update = \msg -> \model -> "N/A"
+        { init = initialModel
+        , view = view
+        , update = update
         }
