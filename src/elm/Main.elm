@@ -1,21 +1,8 @@
 module Main exposing (main)
 
 import Browser
-import Html exposing (Html)
-
-
-type alias Model =
-    String
-
-
-initialModel : Model
-initialModel =
-    "Default Webapp | Elm & ZEIT Now edition [v0.7.5]"
-
-
-view : Model -> Html Never
-view model =
-    Html.text model
+import Model exposing (Model)
+import View
 
 
 update : Never -> Model -> Model
@@ -27,7 +14,7 @@ update msg model =
 main : Program () Model Never
 main =
     Browser.sandbox
-        { init = initialModel
-        , view = view
+        { init = Model.initialModel
+        , view = View.view
         , update = update
         }
