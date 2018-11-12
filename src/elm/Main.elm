@@ -8,7 +8,7 @@ import View
 update : Never -> Model -> Model
 update msg model =
     -- Never invoked ('init' is the only "update", no user events yet)
-    "N/A"
+    Model.emptyModel
 
 
 main : Program () Model Never

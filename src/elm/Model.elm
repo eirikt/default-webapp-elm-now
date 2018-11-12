@@ -1,10 +1,27 @@
-module Model exposing (Model, initialModel)
+module Model exposing (Model, emptyModel, initialModel)
 
 
 type alias Model =
-    String
+    { title : String
+    , edition : String
+    , version : String
+    , content : String
+    }
+
+
+emptyModel : Model
+emptyModel =
+    { title = "N/A"
+    , edition = ""
+    , version = ""
+    , content = ""
+    }
 
 
 initialModel : Model
 initialModel =
-    "Default Webapp | Elm & ZEIT Now edition [v0.7.6]"
+    { title = "Default Webapp"
+    , edition = "Elm & ZEIT Now edition"
+    , version = "0.7.7"
+    , content = "{content}"
+    }
