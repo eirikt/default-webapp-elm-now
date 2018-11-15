@@ -1,2 +1,67 @@
 @charset "UTF-8";
-body { font-family: Tahoma, Geneva, sans-serif; }
+$primary-vertical-margin: 1rem;
+$primary-horizontal-margin: $primary-vertical-margin / 2;
+
+%flex-row-container {
+    display: flex;
+}
+
+%flex-column-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+%full-height {
+    height: 100vh; // https://alastairc.ac/2014/08/flexbox-ie11-bugs
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+body {
+    font-family: Tahoma, sans-serif;
+}
+
+header > {
+    div {
+        margin-top: $primary-vertical-margin;
+        margin-right: $primary-horizontal-margin;
+        margin-left: $primary-horizontal-margin;
+    }
+}
+
+footer > {
+    div {
+        margin-bottom: $primary-vertical-margin;
+        margin-right: $primary-horizontal-margin;
+        margin-left: $primary-horizontal-margin;
+    }
+}
+
+.page {
+    @extend %flex-column-container;
+    @extend %full-height;
+}
+
+.title {
+    font-size: xx-large;
+    white-space: nowrap;
+}
+
+.edition {
+    font-size: large;
+    color: grey;
+}
+
+.version {
+    color: grey;
+    font-style: italic;
+}
+
+.watermark {
+    font-size: 5rem;
+    text-align: center;
+    opacity: 0.1;
+    z-index: 99;
+    transform: rotate(-30deg);
+}

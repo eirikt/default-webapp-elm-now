@@ -1,4 +1,4 @@
-module Model exposing (Model, emptyModel, initialModel)
+module Model exposing (Model, default, invalid)
 
 
 type alias Model =
@@ -9,19 +9,20 @@ type alias Model =
     }
 
 
-emptyModel : Model
-emptyModel =
-    { title = "N/A"
-    , edition = ""
-    , version = ""
-    , content = ""
-    }
-
-
-initialModel : Model
-initialModel =
+default : Model
+default =
     { title = "Default Webapp"
     , edition = "Elm & ZEIT Now edition"
-    , version = "0.7.7"
+    , version = "0.7.8"
     , content = "{content}"
     }
+
+
+invalid : Model
+invalid =
+    --{ title = "N/A"
+    --, edition = ""
+    --, version = ""
+    --, content = ""
+    --}
+    Model "N/A" "" "" ""
