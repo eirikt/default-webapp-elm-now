@@ -693,7 +693,7 @@ The webpack config file with this look a bit more messy/imperative though...
 
 Now, the main deployable artefact `index.js` is 35KB&mdash;a more tangible and acceptable size.
 
-### v0.7: HTML5 Boilerplate / Building the site
+### v0.7: Building the site
 Then, finally, we have the needed structure in place&mdash;we are ready for the actual building of the visual parts of the webapp again.
 
 We are starting out, purposely, quite barebone with obviously deficient HTML.
@@ -814,7 +814,8 @@ main = Browser.sandbox
     , update = \msg -> \model -> "N/A"
     }
 ```
-(Like in [Haskell](https://www.haskell.org), the `\` mimics $\lambda$ ("lambda"), so e.g. `\x` will correspond to lambda calculus notation of $\lambda x$.
+(Like in [Haskell](https://www.haskell.org), the `\` mimics
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of <img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;x"/>.
 It is a bound variable in an anonymous function.)
 
 The `main` value is a data structure representing our entire application that is handed to the Elm runtime.
@@ -1077,6 +1078,7 @@ A list of deployments with visual differences:
 [atom]: https://atom.io
 [electronjs]: https://electronjs.org
 
+[lambda-calculus]: https://en.wikipedia.org/wiki/Lambda_calculus
 [ml-family]: https://en.wikipedia.org/wiki/ML_(programming_language)
 [elm]: http://elm-lang.org
 [elm-official-guide]: https://guide.elm-lang.org/
