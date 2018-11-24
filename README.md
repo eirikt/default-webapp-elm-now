@@ -1,8 +1,8 @@
 # Default Webapp (Elm & ZEIT Now edition)
 My default (opinionated/favourite) setup for web application development&mdash;a [single-page application (SPA)][spa] with client-side rendering, to be more precise.
-(I guess that statement (the opinionated/favourite part) will remain true at least a year or so after the date of the last commit...)
+(I guess that statement (the opinionated/favourite part) will remain true one year after the date of the last commit, at least...)
 
-This is first and foremost a personal writeup.
+This is first and foremost a personal write-up.
 Yet, it will (maybe) end up like a "web project starter", a well-documented starting-point for a project, like a boilerplate&mdash;or just a basic tutorial.
 I will take a somewhat "naive approach" when growing this codebase&mdash;arguing for and introducing features and tooling on the way as we go along, commit by commit, statement by statement&mdash;**stay tuned!**
 
@@ -28,17 +28,14 @@ Deploying the most basic version imaginable of our webapp to our hosting service
 
 ## Prerequisites
 _To be very basic and specific_, the only prerequisites are:
-- Some knowledge of English
-- A computer, a steady supply of electric power, and network connectivity
+- Some knowledge of English ;-)
+- A computer, a steady supply of electric power, and network connectivity ;-)
 - An email account and an email client&mdash;signed in
-
-;-)
 
 Then:
 1. Install [Node.js][node] (The package manager tool, _npm_, is included).
 
    While at it&mdash;update npm (which release cycle is more frequent than Node.js'):
-
    ```bash
    npm install npm@latest --global
    ```
@@ -92,6 +89,10 @@ Deploy (again):
 ```
 now
 ```
+
+Do notice that a certificate for the site is generated on-the-fly&mdash;thanks to [letsencrypt.org](https://letsencrypt.org)).
+(This enables [HTTPS][https] which facilitates encryption of data sent over the wire, and server-side authentication.)
+
 ### ZEIT Now: Deployment to production
 ZEIT Now auto-generates a URL for the commissioned resource.
 It is to be regarded as a staging area for your deployment.
@@ -119,10 +120,7 @@ Now, to deploy to staging, _and_ at the same time, create a production alias of 
 ```bash
 now --public & now alias
 ```
-Check out this easy-to-remember URL, <https://defaultwebapp.now.sh> in all browsers available.
-
-Do notice that a certificate for the site is on-the-fly generated (thanks to [letsencrypt.org](https://letsencrypt.org)).
-
+Check the easy-to-remember URL, <https://defaultwebapp.now.sh> in all browsers available.
 
 
 * * *
@@ -145,7 +143,7 @@ The v0.1.x commits are:
 
 #### v0.1.3: Text formatting [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/9eb77c484ea273caeec36a3c187bb824f28762bc) | [deployment](https://file-eswpsfmlgn.now.sh) ]
 Very basic [HTML][html] tags added.
-(HTML tutorials and WYSIWYG editor helpers are all over the web.)
+(HTML tutorials and  [WYSIWYG][wysiwyg] editor helpers are all over the web.)
 
 #### v0.1.4: Convenient deployment to production [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/3d6cdd9c4944878ea9ce5e2c6ed36e79ffea95f4) ]
 (See above.)
@@ -156,7 +154,7 @@ The v0.2.x commits are:
 #### v0.2.0: Project layout  [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/03ca6f91da131e70cdffaa3632a22a3e8ed754c4) | [deployment](https://build-epqechqdql.now.sh) ]
 This commit includes:
 - A designated source folder, `src`, should include most source files.
-Left out at the project root are documentation, license, and project-wide configurations.
+Left out in the project root are documentation, license, and project-wide configurations.
 Also, the `index.html` file got some more [CSS][css] styling.
 
 - A designated build folder, `build`, brings the need of a `.gitignore` file, ignoring that folder from version control.
@@ -168,7 +166,7 @@ Also, it mandates a change in the ZEIT Now configuration file `now.json`&mdash;w
 [_npm_][npm] originally was the "Node.js Package Manager", but is now become the de-facto tool for all web and JavaScript-based projects.
 All project meta-information and package/component dependencies goes in its `package.json` project configuration file.
 
-We start with a vanilla `package.json`, which we will extend in the following commits.
+We start with a default `package.json`, which we will extend in the following commits.
 
 ...
 
@@ -263,7 +261,7 @@ npm run deploy
 ```
 ### v0.3: Using Elm
 [Elm][elm] is a statically typed, pure functional programming language.
-By that, it brings (by default, out-of-the-box) <a name="fp">good stuff</a> like:
+By that, it brings (by default, out-of-the-box) good stuff like:
 - [Immutability](https://en.wikipedia.org/wiki/Immutable_object)&mdash;shared mutable state is just a nightmare in computer applications
 
 - [Sum types](https://en.wikipedia.org/wiki/Tagged_union)&mdash;which together with the enforced static type checking eliminates [null references](https://en.wikipedia.org/wiki/Null_pointer)
@@ -272,7 +270,7 @@ By that, it brings (by default, out-of-the-box) <a name="fp">good stuff</a> like
 
 Elm [transpiles](https://en.wikipedia.org/wiki/Source-to-source_compiler) to ECMAScript 5. Hence, without any further transpiling, leaves Internet Explorer 8 and all those even more ancient browsers behind.
 
-Well, [install](https://guide.elm-lang.org/install.html) Elm.
+[Install](https://guide.elm-lang.org/install.html) Elm.
 
 ...
 
@@ -303,7 +301,7 @@ So, we add a `src/index.js` file, in which we do two things:
    This little statement is JavaScript code that will be executed in the browsers.
    For the small amounts of JavaScript we will use, we will, as a principle, use modern JavaScript.
    Here we are using ECMAScript 2015 features&mdash;which means that Internet Explorer 10 and older browsers at the moment are unsupported in this webapp.
-   Support for older browsers can be achieved by an extra transpiling step (which we will introduce in later commits)&mdash;but only add it if the customer explicitly asks for/demands it!
+   Support for older browsers can be achieved by an extra transpiling step (which we will introduce in later commits)&mdash;but only add it if the customer explicitly asks for/demands it when you inform them about this choice.
 
    ###### Elm-based content
    We have to add the requested `src/elm/Main.elm` source file. e.g.:
@@ -328,7 +326,7 @@ So, we add a `src/index.js` file, in which we do two things:
    }
    ```
    It will transpile the Elm source code to ECMAScript 5 source code using the Elm standard `make` tool (which is included in the standard Elm install).
-   Also, the Elm ECMAScript 5-based runtime will be added to the generated code.
+   Also, the _Elm ECMAScript 5-based runtime_ will be added to the generated code.
    More on the Elm runtime later.
 
 1. Execute this generated JavaScript, and add it to a DOM element we know is present in the generated `index.html`.
@@ -402,7 +400,7 @@ It is a separate, modular solution for the "look & feel" concern of the webapp.
 And when using a CSS extension like [Sass][sass] (or specifically SCSS, "Sassy CSS"), we have a powerful technical foundation to work with.
 Sass supports niceties like variables, nesting, inheritance, mixins, and imports.
 Also, when adhering to ad-hoc techniques for improving reusability like [BEM][bem]&mdash;Block Element Modifier, and maybe also [SMACSS][smacss]&mdash; we are well-equipped for safe and convenient styling.
-(Of course, sticking to Sass will also preserve the connection to my previous ["default webapp"][default-webapp-heroku] project&mdash;making the comparison between the two solutions easier.)
+(Of course, sticking to Sass will also make it easier to compare this codebase to my previous ["default webapp"][default-webapp-heroku] project.)
 
 ...
 
@@ -462,7 +460,7 @@ npm run build
 ### v0.5: Static code analysis
 Before starting on the actual building of the visual parts of the webapp, let us have a look at tooling.
 
-Establishing some, uhm, common "values" for the codebase is helpful for the alleged _organizational scaling_.
+Establishing some, uhm, common "values" for the codebase is helpful.
 Manual code reviews are fine and well, but externalizing as much of coding concerns as possible is preferable&mdash;"objective truths" tend not to create grudges in the same way "subjective truths" may.
 Automated feedback is also preferable over manual tasks, always.
 
@@ -527,7 +525,7 @@ But also, Elm Analyse has to replace its outdated [open](https://github.com/jjrd
 #### v0.5.4: `elm-format`, for Elm code style [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/db65850d4f9c36ac4807cbb2d2628c61a4734b91) ]
 Elm has included and established some modern features, making it stand out amongst programming languages.
 One of them is _enforced [semantic versioning][semver]_.
-Elm detects all API changes automatically (thanks to its type system), and uses that information to guarantee that every single Elm package follows semantic versioning precisely.
+Elm detects all API changes automatically (thanks to its type system), and uses that information to guarantee that every single Elm package follows a semantic versioning scheme.
 Another "feature" is _official and well-established code style_.
 It is not enforced out-of-the-box, but can be automatically applied by the [elm-format][elm-format] tool.
 
@@ -540,8 +538,12 @@ By the way, there is really no reason not to add it as a global package:
 npm install elm-format --global
 ```
 And create a task in `package.json` that formats all our Elm code:
-```json
-"elm:format": "elm-format src/elm/ --yes",
+```javascript
+"scripts": {
+    ...
+    "elm:format": "elm-format src/elm/ --yes",
+    ...
+},
 ```
 
 #### v0.5.5: `sass-lint`, for Sass code style and idioms [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/096ad5ce10d9ef936a4f04c1ae9e257ac1851d66) ]
@@ -554,9 +556,9 @@ Sass Lint can be configured from a `.sass-lint.yml` or `.sasslintrc` file in you
 We will not do that yet&mdash;rather we will just follow the [default configuration](https://github.com/sasstools/sass-lint/blob/master/lib/config/sass-lint.yml).
 
 #### v0.5.6: EditorConfig, for common IDE behaviour [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/bc8d70d1772dc84aee815250b4de7f4782ca29ae) ]
-A nice, beloved text editor (or even a full-blown, hopefully not full-bloated, integrated development environment (IDE)) is an integral part of a software developer's life.
+A nice, beloved text editor (or even a full-blown, hopefully not bloated, integrated development environment (IDE)) is an integral part of a software developer's life.
 Even we are somewhat restricting individual preferences in this setup, the IDE should be free of choice.
-To "preserve organizational scaling" concerns, we are creating a common ground for IDEs with [EditorConfig](https://editorconfig.org), IDE-agnostic editor configurations.
+For "organizational scaling" concerns, we are creating a common ground for IDEs with [EditorConfig](https://editorconfig.org), IDE-agnostic editor configurations.
 That consolidates e.g. issues like _[whitespace](https://en.wikipedia.org/wiki/Whitespace_character) handling_&mdash;important for avoiding unnecessary version differences.
 
 So, the text editors/IDEs used by project developers should support EditorConfig internally or via a plugin.
@@ -578,7 +580,7 @@ It is like automatic pushing of `F5`.
 This is easily implemented by using webpack's [DevServer](https://github.com/webpack/webpack-dev-server).
 
 Add it as a script/task/command in `package.json`:
-```json
+```javascript
 "scripts": {
     ...
     "dev": "webpack-dev-server",
@@ -599,13 +601,17 @@ Check if live reloading works&mdash;all files in `src` folder should be monitore
 #### v0.6.1: Even better, developing with _hot reloading_ [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/d15f7c8878781b99128b3d4ec0fc5f6abc98b231) ]
 "Hot reloading" means that just the DOM elements that have altered content are being updated (by directly manipulating the DOM).
 That leads to a more "smooth" developer experience than "live reloading" provides.
-Also, this is how the actual user experience will be, because this is accomplished by the one-directionally data flow which Elm utilizes.
+Also, this is how the actual user experience will be, because this is accomplished by the one-directional data flow which Elm utilizes.
 
 This is easily implemented by using [elm-hot-webpack-loader](https://github.com/klazuka/elm-hot-webpack-loader).
 
 Add a `--hot` flag to the `dev` task:
-```json
-"dev": "webpack-dev-server --hot",
+```javascript
+"scripts": {
+    ...
+    "dev": "webpack-dev-server --hot",
+    ...
+},
 ```
 In `webpack.config.js`, add:
 ```javascript
@@ -623,7 +629,7 @@ devServer: {
     }
 },
 ```
-(Port 9000 stands out better as 'dev' than 8080, I think.)
+(Port `9000` stands out better as 'development' than `8080`, I think.)
 Overlays for compiler warnings and errors are feedback as immediate as it gets.
 
 Install it:
@@ -637,7 +643,7 @@ npm run dev
 Now, go to <http://localhost:9000>.
 Check if live reloading works (use F12)&mdash;all files in `src` folder should be monitored for changes.
 
-NB! Hot reloading does not work in any version of Internet Explorer.
+**NB!** Hot reloading does not work in any version of Internet Explorer.
 
 #### v0.6.2: Building for production [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/f11013ca859786f3f951c5fbd94a8d33bbee82e7) ]
 Now, when building the solution with:
@@ -653,9 +659,13 @@ Firstly, remove the hardcoded build mode in `webpack.config.js`:
 mode: 'development',
 ```
 Then add the build mode as arguments to webpack:
-```json
-"build:development": "webpack --mode=development",
-"build:production": "webpack --mode=production",
+```javascript
+"scripts": {
+    ...
+    "build:development": "webpack --mode=development",
+    "build:production": "webpack --mode=production",
+    ...
+},
 ```
 There are several ways to implement build modes in webpack.
 One strategy is to have separate webpack config files, typically one for development and one for production.
@@ -681,30 +691,323 @@ module.exports = (env, argv) => {
 ```
 The webpack config file with this look a bit more messy/imperative though...
 
+Now, the main deployable artefact `index.js` is 35KB&mdash;a more tangible and acceptable size.
+
 ### v0.7: HTML5 Boilerplate / Building the site
 Then, finally, we have the needed structure in place&mdash;we are ready for the actual building of the visual parts of the webapp again.
 
+We are starting out, purposely, quite barebone with obviously deficient HTML.
+First, let us bump the quality up a notch for that.
+Then, we can create a page design "skeleton".
+
+...
+
+The v0.7.x commits are:
+
+#### v0.7.0: Valid HTML [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/1df6a57c2fab1d5657a941ab92e6e0d07d52d000) | [deployment](https://build-cbqmulqgus.now.sh) ]
+Let us start with the easiest way of getting feedback on the quality of the HTML we send to the browsers/clients&mdash;The browser themselves.
+By pushing `F12` and have a look at the Console pane, we see complaints of out current HTML structure;
+Things like:
+```
+HTML1527: DOCTYPE expected. Consider adding a valid HTML5 doctype: “!DOCTYPE html>”.
+index.html (1,1)
+
+HTML1500: Tag cannot be self-closing. Use an explicit closing tag.
+index.html (1,1)
+```
+Let us fix those.
+
+#### v0.7.1: Favicons [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/1dbc3f4f682377d65425e2b9f9065bae766c30a0) | [deployment](https://build-jexriqbedd.now.sh) ]
+Some browsers also complain about missing favicon, giving us an ugly `404` in the browser console.
+
+The days of just having a tiny `favicon.ico` file are gone.
+Several image formats and types but also configuration files (e.g.: `browserconfig.xml` and `manifest.json`) are now necessary to have a nice favicon on all the available devices out there.
+
+First, generate your favicon files using the excellent generator at <https://realfavicongenerator.net>.
+It provides all the necessary files.
+Also it generates code snippets for updating our `<head>` element.
+
+For my favicon, I just picked one from <https://favicon.io/emoji-favicons/> and ran it through the favicon generator.
+
+...
+
+Now we are back to using webpack for file copying...
+
+In `webpack.config.js`&mdash;Declare the plugin:
+```javascript
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+```
+Add modifiable config and option objects:
+```javascript
+let copyWebpackPluginConfig = [
+    {
+        from: 'src/assets/favicons/**/*',
+        flatten: true
+    }
+];
+let copyWebpackPluginOptions = {}
+```
+And add the plugin to the final plugin array of our webpack config:
+```javascript
+config.plugins = [
+    new CopyWebpackPlugin(copyWebpackPluginConfig, copyWebpackPluginOptions),
+    new HtmlWebpackPlugin(htmlWebpackPluginConfig)
+]
+```
+...
+
+Install it and update our npm dependencies:
+```bash
+npm install copy-webpack-plugin --save-dev
+```
+And then build:
+```bash
+npm run build
+```
+
+#### v0.7.2: Outdated browser warning [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/d6456cfcf71be5357795262f07ba0d8fce2eef99) | [deployment](https://build-evhjfounxv.now.sh) ]
+As we are not supporting certain older browser, it is polite to inform users of that.
+Copied from [HTML5 Boilerplate](https://html5boilerplate.com) is this snippet using Internet Explorer-proprietary _conditional comments_:
+```
+<!--[if lte IE 9]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com">upgrade your browser</a> to improve your experience.</p>
+<hr/>
+<![endif]-->
+```
+Support for conditional comments was removed in Internet Explorer 10, so that is a missed browser.
+But based on the [browser usage statistics](https://caniuse.com/usage-table), showing a 0.07% usage, let us just take our chances and ignore that one for the time being...
+
+#### v0.7.3: HTML5 Boilerplate [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/edc7c304881f5c7c1bb68e103d0541cd6ee81bda) | [deployment](https://build-vomhymkavq.now.sh) ]
+[HTML5 Boilerplate](https://html5boilerplate.com) has a lot of [necessary tricks](https://github.com/h5bp/html5-boilerplate/blob/6.1.0/dist/doc/html.md) for our `index.html` file;
+Things like:
+* Character encoding
+* [Viewport](https://en.wikipedia.org/wiki/Viewport)
+* [CSS normalization](https://necolas.github.io/normalize.css/)
+* The order of the meta elements
+
+Let us include most of them.
+
+Also [Google's HTML and CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html) is worth a look&mdash;Not obeying all those recommendation at the moment, maybe later.
+
+...
+
+#### The Elm Architecture
+The Elm Architecture is a pattern for architecting webapps.
+You can read all about it in [Elm's official documentation][elm-official-guide].
+Said very shortly; it is one-directional data binding put into a model-view-controller ([MVC][mvc])-like code layout.
+In fact, The Elm Architecture pioneered the one-directional data binding design.
+Projects like [Redux][redux] have been inspired by it, so you may have already seen derivatives of this pattern.
+
+The main entrance to Elm Architecture-based web applications is the [`Browser` package](https://package.elm-lang.org/packages/elm/browser/latest/).
+
+#### v0.7.4: Elm: `Browser.sandbox` (without browser events) [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/dc326f3a93bdfb893c1b9bb148a6bdc86ffe3670) ]
+
+In the previous Elm code we just used Elm to produce an HTML text that was embedded in an existing HTML element (declared in our `index.template.html` file), like this:
+```elm
+main = Html.text "Default Webapp | Elm & ZEIT Now edition [v0.7.3]"
+```
+When using the `Browser.sandbox` function, the Elm Architecture becomes more visible.
+```elm
+main = Browser.sandbox
+    { init = "Default Webapp | Elm & ZEIT Now edition [v0.7.4]"
+    , view = \model -> Html.text model
+    , update = \msg -> \model -> "N/A"
+    }
+```
+(Like in [Haskell](https://www.haskell.org), the `\` mimics $\lambda$ ("lambda"), so e.g. `\x` will correspond to lambda calculus notation of $\lambda x$.
+It is a bound variable in an anonymous function.)
+
+The `main` value is a data structure representing our entire application that is handed to the Elm runtime.
+The `init` value represents the initial application state&mdash;The initial/default model.
+The `view` function produces the resulting view.
+It is always invoked when the model changes.
+The `update` function represents state changes from the browser/user.
+
+As we do not have any means for the user to update the DOM, the `update` function will never be invoked.
+`init` is the only "update", for now.
+Without messages/events coming from the browser our Elm application looks like this:![](docs/browser-static.png)<div style="text-align: right"><sub><sup>Modification of source from: <a href="https://guide.elm-lang.org/effects/">https://guide.elm-lang.org/effects/</a></sup></sub></div>
+...a "static" web page containing initial state only.
+
+#### v0.7.5: Elm: Function declarations [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/b5b14c052db71edc8589953adb5ea8bdb1afe6f4) ]
+Let us get rid of those anonymous(, refactoring-unfriendly, and test-unfriendly) functions&mdash;Extracting them to their own declarations.
+`view = \model -> Html.text model` now becomes `view model = Html.text model`
+
+_Type signatures_ are also added.
+Elm has automatic _type inference_, but it is recommended to include type signatures for readability/maintainability.
+E.g. the `view` function has this type signature
+```elm
+view : Model -> Html msg
+```
+This reads; `view` is a function that takes a parameter of type `Model`, and returns a value of type [`Html`](https://package.elm-lang.org/packages/elm/html/latest/Html#Html) value.
+The `msg` ("message") is a parameterized type telling the [`Html`](https://package.elm-lang.org/packages/elm/html/latest/Html#Html) value what kind of values that may be sent back into the Elm runtime.
+In our very simple application we have no browser/user events declared, so we just add the concrete special type `Never`, meaning that no events ("messages") will be accepted from the [DOM][dom] by the Elm runtime.
+If we try to declare some browser event handling in our application it will not compile!
+```elm
+view : Model -> Html Never
+view model = Html.text model
+```
+Our model is very simple&mdash;just a string:
+```elm
+type alias Model = String
+
+initialModel : Model
+initialModel = "Default Webapp | Elm & ZEIT Now edition [v0.7.5]"
+```
+
+#### v0.7.6: Elm: Modules [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/474ce0ce9e21a236d2c1b5a7551b79c7421579e5) ]
+Splitting up code into modules (most often) increases testability, readability, and maintainability, e.g. making code reuse easier.
+
+Elm has built-in support for modules.
+We extract `model` and `view` from `Main.elm` into typically `Model.elm` and `View.elm`.
+All Elm files start with the keyword `module` followed by the name of the module.
+The keyword `exposing` tells which functions are to be exposed outside the module (file).
+```elm
+module Model exposing (Model, initialModel)
+```
+Here `Model` is both the name of the module and an exposed value (the type alias).
+
+`Main.elm` now have to import them to be able use them.
+That is accomplished via the keyword `import`.
+```elm
+import Model exposing (Model)
+import View
+```
+When adding `exposing` when importing we can reference those exposed functions directly, without having to state the full module path.
+E.g. here we can use `Model` insetad of `Model.Model`.
+
+#### v0.7.7: Elm: View [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/b0b13f832a57af25d353cb2f9348358f442d8647) | [deployment](https://build-tvxzdyyxeh.now.sh) ]
+Growing the webapp means expanding our model&mdash;We need more than just one string value.
+Elm's core structure type _record_ is suitable for this.
+A record is a fixed set of key-value pairs, similar to objects in JavaScript or Python.
+Let us add a few more attributes:
+```elm
+type alias Model =
+    { title : String
+    , edition : String
+    , version : String
+    , content : String
+    }
+```
+##### HTML-templating in Elm
+Generating the HTML is a bit different then we are used from JavaScript-based tools and frameworks.
+There is no template language here, rather a regular statically typed Elm data structure.
+When building HTML in Elm, we use helper functions mimicking the HTML tags and attributes.
+These helper functions are mostly ready-made and available in the [`HTML`](https://package.elm-lang.org/packages/elm/html/latest/Html) package.
+In fact, they are all [curried](https://en.wikipedia.org/wiki/Currying) versions of this common HTML node function:
+```elm
+node : String -> List (Attribute msg) -> List (Html msg) -> Html msg
+```
+This means that this `node` function defines how all HTML tags are represented in Elm.
+A node/"tag" name, a list of attributes, and a list of child nodes.
+E.g. the `div` function is defined like this:
+```elm
+div : List (Attribute msg) -> List (Html msg) -> Html msg
+div attributes children = node "div" attributes children
+```
+Do notice that the node, all attributes, all child nodes, and their attributes as well, may emit the same `msg` type.
+This means that this type (which we will have to define once we will let messages/events into our application from either the browser/user or from outside) must include all possible application events.
+This is possible as the `msg` will be a [sum type](https://en.wikipedia.org/wiki/Tagged_union).
+
+To obtain these html tag helper functions we just extend our import declaration for the view:
+```elm
+import Html exposing (Html, article, div, footer, header, hr, section, span, text)
+```
+
+Our page skeleton is now a three-sectioned article/page:
+```elm
+view : Model -> Html Never
+view model =
+    article []
+        [ headerSection model
+        , mainSection model
+        , footerSection model
+        ]
+```
+
+The sections are also plain functions, e.g. the header section:
+```elm
+headerSection : Model -> Html Never
+headerSection model =
+    header []
+        [ div []
+            [ span [] [ text (model.title ++ " | " ++ model.edition) ]
+            ]
+        , hr [] []
+        ]
+```
+When our `view` function is handed over to the Elm runtime, it updates its virtual DOM and figures out what effectful writes should be made to the real DOM&mdash;All this done [safely and extremely efficiently](https://elm-lang.org/blog/blazing-fast-html-round-two)!
+
+(In my opinion, application code should never touch the DOM directly.
+Sooner or later that will just end up with bugs, memory leakage, and screen flickering...)
+
+The header section ends up in the browser as expected:
+```html
+<header>
+    <div>
+        <span>Default Webapp</span><span> | Elm &amp; ZEIT Now edition</span>
+    </div>
+    <hr>
+</header>
+```
+
+#### v0.7.8: Page styling [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/2dca9550514bc84d22baf82dbec54bed6558aeb4) | [deployment](https://build-sfohtqquor.now.sh) ]
+To be able to include style class attributes in our view, include this package:
+```elm
+import Html.Attributes exposing (class)
+```
+Now we can extend e.g. our header:
+```elm
+headerSection model =
+    header []
+        [ div []
+            [ span [ class "title" ] [ text model.title ]
+            , span [ class "edition" ] [ text (" | " ++ model.edition) ]
+            ]
+        , hr [] []
+        ]
+```
+...
+
+We are using CSS Flexbox for laying out our page.
+Our page is a simple column with items/sections, which is quite easy to do with flexboxes.
+An excellent tutorial can be found [here][flexbox-tutorial].
+Also, there is a [game][flexbox-game] :-)
+
+An alternative to CSS Flexbox is [CSS Grid Layout][css-grid-layout].
+That is for a later version, maybe.
+
+#### v0.7.x: Elm: `Browser.sandbox`: Taking input
+You can think of `Browser.sandbox` as setting up a system like this:![][elm-architecture-sandbox]
+<div style="text-align: right"><sub><sup>Source: <a href="https://guide.elm-lang.org/effects/">https://guide.elm-lang.org/effects/</a></sup></sub></div>
+
 _TODO: ..._
 
-### v0.x: The Elm Architecture
+#### v0.7.x: Elm: `Browser.element`: Communicating with the outside world
+In the next few examples, we will switch from the simple `Browser.sandbox` to the `Browser.element` function.
+This will introduce the ideas of _commands_ and _subscriptions_ which will allow us to interact more with the outside world.
+
+You can think of `Browser.element` as setting up a system like this:
+![][elm-architecture-element]
+<div style="text-align: right"><sub><sup>Source: <a href="https://guide.elm-lang.org/effects/">https://guide.elm-lang.org/effects/</a></sup></sub></div>
+
 _TODO: ..._
 
-### v0.x: Elm: Communicating with the outside world
+#### v0.7.x: Elm: Animations
 _TODO: ..._
 
-### v0.x: Elm: Testing
+### v0.x: Elm: "Offline first" / Service Workers
 _TODO: ..._
 
-### v0.x: Elm: "Offline first", using Service Workers
-_TODO: ..._
-
-### v0.x: Elm: "Mobile App" / Progressive Web Applications
+### v0.x: Elm: "Mobile App" / Progressive Web Applications (PWA)
 _TODO: ..._
 
 ### v0.x: Elm: Utilizing [FaaS](https://en.wikipedia.org/wiki/Function_as_a_service) resources
 _TODO: ..._
 
 ### v0.x: Elm: "Desktop App" / [Electron][electronjs]
+_TODO: ..._
+
+### v0.x: Elm: Testing
 _TODO: ..._
 
 ### v0.x: Immutable infrastructure / A build pipeline using containers
@@ -727,6 +1030,13 @@ _TODO: ..._
 Latest greatest, always: <https://defaultwebapp.now.sh>
 
 A list of deployments with visual differences:
+- v0.7.8: <https://build-sfohtqquor.now.sh>
+- v0.7.7: <https://build-tvxzdyyxeh.now.sh>
+- v0.7.3: <https://build-vomhymkavq.now.sh>
+- v0.7.2: <https://build-evhjfounxv.now.sh>
+- v0.7.1: <https://build-jexriqbedd.now.sh>
+- v0.7.0: <https://build-cbqmulqgus.now.sh>
+
 - v0.4.0: <https://build-pwrjvwrvzv.now.sh>
 
 - v0.3.2: <https://build-ahhwscxgwo.now.sh>
@@ -769,15 +1079,23 @@ A list of deployments with visual differences:
 
 [ml-family]: https://en.wikipedia.org/wiki/ML_(programming_language)
 [elm]: http://elm-lang.org
+[elm-official-guide]: https://guide.elm-lang.org/
 [elm-webpack-loader]: https://github.com/elm-community/elm-webpack-loader
 [elm-html-html]: https://package.elm-lang.org/packages/elm/html/latest/Html
 [elm-css]: https://package.elm-lang.org/packages/rtfeldman/elm-css/latest
 [elm-format]: https://github.com/avh4/elm-format
 [elm-analyse]: https://stil4m.github.io/elm-analyse/
+[elm-architecture-sandbox]: https://guide.elm-lang.org/effects/diagrams/sandbox.svg
+[elm-architecture-element]:
+https://guide.elm-lang.org/effects/diagrams/element.svg
 
 [semver]:https://semver.org
 [regex]: https://en.wikipedia.org/wiki/Regular_expression
+[mvc]: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
 
+[http]: https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
+[https]: https://en.wikipedia.org/wiki/HTTPS
+[dom]: https://en.wikipedia.org/wiki/Document_Object_Model
 [html]: https://en.wikipedia.org/wiki/HTML
 [css]: https://en.wikipedia.org/wiki/Cascading_Style_Sheets
 [sass]: https://sass-lang.com
@@ -786,12 +1104,18 @@ A list of deployments with visual differences:
 [css-blocks]: https://css-blocks.com
 [bem]: http://getbem.com
 [smacss]: https://smacss.com
+[flexbox-tutorial]: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+[flexbox-game]: https://flexboxfroggy.com
+[css-grid-layout]: https://css-tricks.com/snippets/css/complete-guide-grid/
 [sass-webpack-loader]: https://github.com/webpack-contrib/sass-loader
 [css-webpack-loader]: https://github.com/webpack-contrib/css-loader
 [style-webpack-loader]: https://github.com/webpack-contrib/style-loader
 [sass-lint]: https://github.com/sasstools/sass-lint
 [twitter-bootstrap]: http://getbootstrap.com
 [google-material-design]: https://material.io
+[wysiwyg]: https://en.wikipedia.org/wiki/WYSIWYG
+[favicon]: https://medium.com/tech-angels-publications/bundle-your-favicons-with-webpack-b69d834b2f53
+[webpack-favicon]: https://stackoverflow.com/questions/37298215/add-favicon-with-react-and-webpack
 
 [grunt]: https://gruntjs.com
 [gulp]: https://gulpjs.com
