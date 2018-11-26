@@ -5,9 +5,11 @@
 build
 elm-stuff
 node_modules
+README.html
+README.pdf
 
 # Ignore other development stuff
-#...
+tmp
 
 # Ignore IDE/tools stuff
 .idea
