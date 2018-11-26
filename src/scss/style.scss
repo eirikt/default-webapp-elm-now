@@ -1,25 +1,26 @@
-@charset "UTF-8";
+@charset "utf-8";
 $primary-vertical-margin: 1rem;
 $primary-horizontal-margin: $primary-vertical-margin / 2;
+$text-regular: #333333;
+$text-dimmed: #555555;
 
-%flex-row-container {
-    display: flex;
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-%flex-column-container {
+article {
+    // Nice when developing
+    //border: 2px dotted black;
+    font-family: Tahoma, sans-serif;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-%full-height {
-    height: 100vh; // https://alastairc.ac/2014/08/flexbox-ie11-bugs
-    min-height: 100vh;
-    max-height: 100vh;
-}
-
-body {
-    font-family: Tahoma, sans-serif;
+    //height: 90vh; // Not 100 due to special mobile viewport overlays
+    height: 100vh; // Has to be due to background color
 }
 
 header > {
@@ -27,6 +28,14 @@ header > {
         margin-top: $primary-vertical-margin;
         margin-right: $primary-horizontal-margin;
         margin-left: $primary-horizontal-margin;
+    }
+}
+
+section > {
+    div {
+        display: flex;
+        flex-wrap: no-wrap;
+        justify-content: space-between;
     }
 }
 
@@ -38,30 +47,44 @@ footer > {
     }
 }
 
-.page {
-    @extend %flex-column-container;
-    @extend %full-height;
-}
-
 .title {
     font-size: xx-large;
-    white-space: nowrap;
+    color: $text-regular;
 }
 
 .edition {
     font-size: large;
-    color: grey;
+    color: $text-dimmed;
 }
 
 .version {
-    color: grey;
     font-style: italic;
+    color: $text-dimmed;
 }
 
 .watermark {
+    display: flex;
+    justify-content: center;
     font-size: 5rem;
-    text-align: center;
-    opacity: 0.1;
+    color: green;
+    opacity: 0.08;
     z-index: 99;
     transform: rotate(-30deg);
+}
+
+.background-color-picker {
+    position: absolute;
+    top: 6rem;
+    right: $primary-horizontal-margin;
+    display: flex;
+    flex-direction: column;
+}
+
+.background-color-button {
+    cursor: pointer;
+    border: 1px solid $text-dimmed;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 2rem;
+    margin-bottom: 0.8rem;
 }

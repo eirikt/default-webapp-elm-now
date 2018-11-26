@@ -1,17 +1,18 @@
 module Main exposing (main)
 
 import Browser
-import Model exposing (Model)
+import Model exposing (Model, Msg(..))
 import View
 
 
-update : Never -> Model -> Model
+update : Msg -> Model -> Model
 update msg model =
-    -- Never invoked ('init' is the only "update", no user events yet)
-    Model.invalid
+    case msg of
+        Background color ->
+            { model | backgroundColor = color }
 
 
-main : Program () Model Never
+main : Program () Model Msg
 main =
     Browser.sandbox
         { init = Model.default

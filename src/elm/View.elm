@@ -1,11 +1,22 @@
 module View exposing (view)
 
-import Html exposing (Html, article, div, footer, header, hr, section, span, text)
-import Html.Attributes exposing (class)
-import Model exposing (Model)
+import Html exposing (Html, article, button, div, footer, header, hr, section, span, text)
+import Html.Attributes exposing (class, style)
+import Html.Events exposing (onClick)
+import Model exposing (Model, Msg(..))
 
 
-headerSection : Model -> Html Never
+backgroundColorButton : String -> Html Msg
+backgroundColorButton backgroundColor =
+    div
+        [ class "background-color-button"
+        , style "background" backgroundColor
+        , onClick (Background backgroundColor)
+        ]
+        []
+
+
+headerSection : Model -> Html Msg
 headerSection model =
     header []
         [ div []
@@ -16,24 +27,25 @@ headerSection model =
         ]
 
 
-mainSection : Model -> Html Never
+mainSection : Model -> Html Msg
 mainSection model =
-    section [ class "watermark" ] [ text model.content ]
-
-
-footerSection : Model -> Html Never
-footerSection model =
-    footer []
-        [ hr [] []
-        , div []
-            [ span [ class "version"] [ text (model.title ++ " v" ++ model.version) ]
-            ]
+    section []
+        [ div [ class "watermark" ] [ text model.content ]
+        , div [ class "background-color-picker" ] (List.map backgroundColorButton Model.backgroundColors)
         ]
 
 
-view : Model -> Html Never
+footerSection : Model -> Html Msg
+footerSection model =
+    footer []
+        [ hr [] []
+        , div [] [ span [ class "version" ] [ text (model.title ++ " v" ++ model.version) ] ]
+        ]
+
+
+view : Model -> Html Msg
 view model =
-    article [class "page"]
+    article [ style "background" model.backgroundColor ]
         [ headerSection model
         , mainSection model
         , footerSection model
