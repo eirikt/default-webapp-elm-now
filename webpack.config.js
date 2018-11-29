@@ -1,6 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const packageJson = require('./package.json');
 
 const config = {
     entry: [
@@ -39,6 +42,12 @@ const config = {
     },
 };
 
+let definePluginConfig = {
+    VERSION: JSON.stringify(packageJson.version),
+    TIMESTAMP: JSON.stringify(new Date().toISOString()),
+    MODE: JSON.stringify('Development')
+};
+
 let copyWebpackPluginConfig = [
     {
         from: 'src/assets/favicons/**/*',
@@ -48,7 +57,10 @@ let copyWebpackPluginConfig = [
 let copyWebpackPluginOptions = {}
 
 let htmlWebpackPluginConfig = {
-    template: path.join(__dirname, 'src/index.template.html')
+    template: path.join(__dirname, 'src/index.template.html'),
+    templateParameters: {
+        description: packageJson.description,
+    }
 };
 
 module.exports = (env, argv) => {
@@ -72,6 +84,9 @@ module.exports = (env, argv) => {
             removeComments: true
         }
 
+        console.log('Removing \'Development\' build mode label... Absence of build mode means \'Production\'');
+        definePluginConfig.MODE = null;
+
     } else { // => 'development'
         console.log('Adding Elm\'s debug overlay to output...');
         config.module.rules[0].use[1].options = {
@@ -80,12 +95,13 @@ module.exports = (env, argv) => {
     }
 
     config.plugins = [
+        new webpack.DefinePlugin(definePluginConfig),
         new CopyWebpackPlugin(copyWebpackPluginConfig, copyWebpackPluginOptions),
         new HtmlWebpackPlugin(htmlWebpackPluginConfig)
     ]
 
     // "Prettyprint" webpack config
-    console.log('Webpack config: ' + JSON.stringify(config, null, 2));
+    //console.log('Webpack config: ' + JSON.stringify(config, null, 2));
 
     return config;
 };

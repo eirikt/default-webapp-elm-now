@@ -5,6 +5,8 @@ type alias Model =
     { title : String
     , edition : String
     , version : String
+    , buildTimestamp : String
+    , buildMode : String
     , backgroundColor : String
     , content : String
     }
@@ -18,7 +20,9 @@ default : Model
 default =
     { title = "Default Webapp"
     , edition = "Elm & ZEIT Now edition"
-    , version = "0.7.9"
+    , version = "?"
+    , buildTimestamp = "?"
+    , buildMode = "?"
     , backgroundColor = "white"
     , content = "{content}"
     }

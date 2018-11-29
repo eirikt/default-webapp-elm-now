@@ -39,7 +39,11 @@ footerSection : Model -> Html Msg
 footerSection model =
     footer []
         [ hr [] []
-        , div [] [ span [ class "version" ] [ text (model.title ++ " v" ++ model.version) ] ]
+        , div []
+            [ span [] [ text (model.title ++ " v" ++ model.version) ]
+            , span [ class "warning" ] [ text model.buildMode ]
+            , span [] [ text ("built " ++ model.buildTimestamp) ]
+            ]
         ]
 
 

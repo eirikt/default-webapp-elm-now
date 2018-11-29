@@ -41,6 +41,10 @@ section > {
 
 footer > {
     div {
+        display: flex;
+        justify-content: space-between;
+        font-style: italic;
+        color: $text-dimmed;
         margin-bottom: $primary-vertical-margin;
         margin-right: $primary-horizontal-margin;
         margin-left: $primary-horizontal-margin;
@@ -57,9 +61,9 @@ footer > {
     color: $text-dimmed;
 }
 
-.version {
-    font-style: italic;
-    color: $text-dimmed;
+.warning {
+    font-weight: bold;
+    color: orange;
 }
 
 .watermark {

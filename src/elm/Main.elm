@@ -1,21 +1,40 @@
 module Main exposing (main)
 
 import Browser
-import Model exposing (Model, Msg(..))
+import Model exposing (Model, Msg(..), default)
 import View
 
 
-update : Msg -> Model -> Model
+type alias Flags =
+    { version : Maybe String
+    , timestamp : Maybe String
+    , mode : Maybe String
+    }
+
+
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    ( { default
+        | version = flags.version |> Maybe.withDefault "?"
+        , buildTimestamp = flags.timestamp |> Maybe.withDefault "?"
+        , buildMode = flags.mode |> Maybe.withDefault ""
+      }
+    , Cmd.none
+    )
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Background color ->
-            { model | backgroundColor = color }
+            ( { model | backgroundColor = color }, Cmd.none )
 
 
-main : Program () Model Msg
+main : Program Flags Model Msg
 main =
-    Browser.sandbox
-        { init = Model.default
+    Browser.element
+        { init = init
         , view = View.view
         , update = update
+        , subscriptions = always Sub.none
         }
