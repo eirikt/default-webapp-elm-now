@@ -1,13 +1,14 @@
 module Main exposing (main)
 
 import Browser
+import DateFormatter
 import Model exposing (Model, Msg(..), default)
 import View
 
 
 type alias Flags =
     { version : Maybe String
-    , timestamp : Maybe String
+    , timestamp : Maybe Int
     , mode : Maybe String
     }
 
@@ -16,7 +17,7 @@ init : Flags -> ( Model, Cmd Msg )
 init flags =
     ( { default
         | version = flags.version |> Maybe.withDefault "?"
-        , buildTimestamp = flags.timestamp |> Maybe.withDefault "?"
+        , buildTimestamp = flags.timestamp |> DateFormatter.format
         , buildMode = flags.mode |> Maybe.withDefault ""
       }
     , Cmd.none

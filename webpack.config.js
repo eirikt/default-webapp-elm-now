@@ -44,7 +44,7 @@ const config = {
 
 let definePluginConfig = {
     VERSION: JSON.stringify(packageJson.version),
-    TIMESTAMP: JSON.stringify(new Date().toISOString()),
+    TIMESTAMP: JSON.stringify(new Date().getTime()),
     MODE: JSON.stringify('Development')
 };
 
