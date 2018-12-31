@@ -1,7 +1,7 @@
 module DateFormatter exposing (format, int2twoDigitString)
 
 import Date
-import Time exposing (Month)
+import Time
 
 
 {-| Transforms an integer to a string representation;
@@ -62,7 +62,6 @@ format maybeTimestamp =
                 minute =
                     Time.toMinute Time.utc posix |> int2twoDigitString
             in
-            --Debug.todo "'DateFormatter.format' not yet implemented"
             --Debug.log "[DEBUG] DateFormatter.format: formattedDateTime" (year ++ "-" ++ month ++ "-" ++ day ++ " " ++ hour ++ ":" ++ minute ++ " (UTC)")
             year ++ "-" ++ month ++ "-" ++ day ++ " " ++ hour ++ ":" ++ minute ++ " (UTC)"
 

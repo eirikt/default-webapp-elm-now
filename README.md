@@ -522,9 +522,21 @@ npm install elm-analyse --save-dev
 ```
 Let us add it as our `check:3` task.
 
-**NB!** As of now, Elm Analyse [does not yet support Elm v0.19](https://github.com/stil4m/elm-analyse/issues/176)!
-So this task is not applicable until it does.
-But also, Elm Analyse has to replace its outdated [open](https://github.com/jjrdn/node-open) dependency, otherwise we sadly have to ditch this excellent tool.
+...
+
+Also, Elm Analyse supports web reports via its internal HTTP server.
+```bash
+npm run elm:analyse-gui
+```
+I have some problems getting the automatic opening of http://localhost:3000 to work though...
+If the browser does not show up, run:
+```bash
+npm run elm:analyse-gui-open
+```
+
+...
+
+(Elm Analyse has to replace its outdated and [blacklisted](https://www.npmjs.com/advisories/663) [open](https://github.com/jjrdn/node-open) dependency, otherwise we sadly have to ditch this nice tool.)
 
 #### v0.5.4: `elm-format`, for Elm code style [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/db65850d4f9c36ac4807cbb2d2628c61a4734b91) ]
 Elm has included and established some modern features, making it stand out amongst programming languages.
@@ -990,7 +1002,7 @@ Also, there is a [game][flexbox-game] :-)
 
 An alternative to CSS Flexbox is [CSS Grid Layout][css-grid-layout].
 
-#### v0.7.9: Elm: `Browser.sandbox`: Reacting to DOM events [ [commit] | [deployment](https://build-qwhozdzxrb.now.sh) ]
+#### v0.7.9: Elm: `Browser.sandbox`: Reacting to DOM events [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/77b2cde9aa62144a3746973e7d9e5505fae2cd73) | [deployment](https://build-qwhozdzxrb.now.sh) ]
 We are now going to accept and react to some events coming from the user, via the mouse/keyboard, via the browser, via the DOM, and finally via our `view` function within the Elm runtime.
 The system now looks like this:![][elm-architecture-sandbox]
 <div style="text-align: right"><sub><sup>Source: <a href="https://guide.elm-lang.org/effects/">https://guide.elm-lang.org/effects/</a></sup></sub></div>
@@ -1110,7 +1122,7 @@ Here is a good illustration of the Elm Architecture data flow:
 
 ![](docs/elm-architecture-illustration.jpg)<div style="text-align: right"><sub><sup>Illustration of The Elm Architecture (found on Twitter)</sup></sub></div>
 
-#### v0.7.10: Elm: `Browser.element` &ndash; Flags [ [commit] | [deployment](https://build-vxobadadil.now.sh) ]
+#### v0.7.10: Elm: `Browser.element` &ndash; Flags [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/a427c8b12e68c7e4b57e88810b70b88780abbac3) | [deployment](https://build-vxobadadil.now.sh) ]
 From here and onwards, we will switch from the simple and limited `Browser.sandbox` function, to the more real-world `Browser.element` function.
 This will introduce the ideas of _commands_ and _subscriptions_ which will allow us to interact with the world beyond the browser's DOM.
 By using the `Browser.element` function, our system will look like this:
@@ -1201,7 +1213,7 @@ init flags =
     )
 ```
 
-#### v0.7.11: Elm: Testing [ [commit] | [deployment](https://build-mbrvmkmtgr.now.sh) ]
+#### v0.7.11: Elm: Testing [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/9866a9a2dfa7ec631ebea4dd3630579c8c2cdcac) | [deployment](https://build-mbrvmkmtgr.now.sh) ]
 A practical way of specifying/testing functions and logic is paramount when developing software applications.
 In Elm, we have several modules taking care of this.
 One of them is [elm-test](https://package.elm-lang.org/packages/elm-explorations/test/latest/) for writing unit tests and [fuzz tests](https://en.wikipedia.org/wiki/Fuzzing).
@@ -1363,10 +1375,10 @@ elm install elm/time
 elm install justinmimbs/date
 ```
 
-#### v0.7.x: Elm: `Browser.element` - Ports
+#### v0.7.12: Elm: `Browser.element` - Ports
 _TODO: ..._
 
-#### v0.7.x: Elm: Animations
+#### v0.7.13: Elm: Animations
 _TODO: ..._
 
 ### v0.8: "Offline first" / Service Workers

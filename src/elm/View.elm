@@ -1,6 +1,6 @@
 module View exposing (view)
 
-import Html exposing (Html, article, button, div, footer, header, hr, section, span, text)
+import Html exposing (Html, article, div, footer, header, hr, section, span, text)
 import Html.Attributes exposing (class, style)
 import Html.Events exposing (onClick)
 import Model exposing (Model, Msg(..))
