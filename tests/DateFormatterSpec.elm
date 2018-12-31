@@ -8,28 +8,28 @@ import Test exposing (Test, describe, test)
 suite : Test
 suite =
     describe "The DateFormatter module"
-        [ describe "int2TwoDigitString"
+        [ describe "int2twoDigitString"
             [ test "should just 'toString' negative integers (1)" <|
                 \_ ->
-                    -100 |> DateFormatter.int2TwoDigitString |> Expect.equal "-100"
+                    -100 |> DateFormatter.int2twoDigitString |> Expect.equal "-100"
             , test "should just 'toString' negative integers (2)" <|
                 \_ ->
-                    -10 |> DateFormatter.int2TwoDigitString |> Expect.equal "-10"
+                    -10 |> DateFormatter.int2twoDigitString |> Expect.equal "-10"
             , test "should just 'toString' negative integers (3)" <|
                 \_ ->
-                    -1 |> DateFormatter.int2TwoDigitString |> Expect.equal "-1"
+                    -1 |> DateFormatter.int2twoDigitString |> Expect.equal "-1"
             , test "should pad zero" <|
                 \_ ->
-                    0 |> DateFormatter.int2TwoDigitString |> Expect.equal "00"
+                    0 |> DateFormatter.int2twoDigitString |> Expect.equal "00"
             , test "should pad single-digit integers" <|
                 \_ ->
-                    1 |> DateFormatter.int2TwoDigitString |> Expect.equal "01"
+                    1 |> DateFormatter.int2twoDigitString |> Expect.equal "01"
             , test "should just 'toString' double-digit integers" <|
                 \_ ->
-                    10 |> DateFormatter.int2TwoDigitString |> Expect.equal "10"
+                    10 |> DateFormatter.int2twoDigitString |> Expect.equal "10"
             , test "should just 'toString' multi-digit integers" <|
                 \_ ->
-                    100 |> DateFormatter.int2TwoDigitString |> Expect.equal "100"
+                    100 |> DateFormatter.int2twoDigitString |> Expect.equal "100"
             ]
         , describe "format"
             [ test "should emit questionmark when no argument" <|

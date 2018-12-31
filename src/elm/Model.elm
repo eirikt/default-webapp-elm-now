@@ -28,8 +28,8 @@ default =
     }
 
 
-{-| CSS-compatible background colors.
-A list of the colors can be viewed e.g. here:
+{-| CSS-compatible background colour.
+A list of the colours can be viewed e.g. here:
 <https://developer.mozilla.org/en-US/docs/Web/CSS/color_value>
 -}
 backgroundColors : List String
@@ -37,8 +37,6 @@ backgroundColors =
     [ "white"
     , "khaki"
     , "coral"
-    , "peru"
-    , "mediumSeaGreen"
     , "skyBlue"
     , "lightSlateGrey"
     ]
