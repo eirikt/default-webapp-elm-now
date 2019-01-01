@@ -830,42 +830,8 @@ main = Browser.sandbox
     , update = \msg -> \model -> "N/A"
     }
 ```
-(Like in [Haskell](https://www.haskell.org), the `\` mimics <img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of ![&lambda;x](docs/lambda-x.gif "&lambda;x")&mdash;a bound variable in an anonymous function.)
-
-
-(Like in [Haskell](https://www.haskell.org), the `\` mimics <img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of ![](docs/lambda-x.gif)&mdash;a bound variable in an anonymous function.)
-
-
-(Like in [Haskell](https://www.haskell.org), the `\` mimics <img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of ![](docs/lambda-x.gif "&lambda;x")&mdash;a bound variable in an anonymous function.)
-
-
-(Like in [Haskell](https://www.haskell.org), the `\` mimics
-<img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of ![&lambda;x](docs/lambda-x.gif "&lambda;x")&mdash;a bound variable in an anonymous function.)
-
-
 (Like in [Haskell](https://www.haskell.org), the `\` mimics
 <img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of ![&lambda;x](https://latex.codecogs.com/gif.latex?\lambda&space;x "&lambda;x")&mdash;a bound variable in an anonymous function.)
-
-
-(Like in [Haskell](https://www.haskell.org), the `\` mimics
-<img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of ![&lambda;x](https://latex.codecogs.com/gif.latex?\lambda%20x "&lambda;x")&mdash;a bound variable in an anonymous function.)
-
-
-(Like in [Haskell](https://www.haskell.org), the `\` mimics
-<img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of <img src="https://latex.codecogs.com/gif.latex?\lambda x"/>&mdash;a bound variable in an anonymous function.)
-
-
-(Like in [Haskell](https://www.haskell.org), the `\` mimics
-<img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of <a href="https://www.codecogs.com/eqnedit.php?latex=\lambda&space;x"><img src="https://latex.codecogs.com/gif.latex?\lambda&space;x" title="\lambda x" /></a>&mdash;a bound variable in an anonymous function.)
-
-
-(Like in [Haskell](https://www.haskell.org), the `\` mimics
-<img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\lambda&space;x"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;x" title="\lambda x" /></a>&mdash;a bound variable in an anonymous function.)
-
-
-(Like in [Haskell](https://www.haskell.org), the `\` mimics
-<img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\lambda&space;x"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;x" alt="&lambda;x" title="\lambda x" /></a>
-&mdash;a bound variable in an anonymous function.)
 
 The `main` value is a value/data structure representing our entire application that is handed to the Elm runtime.
 The `init` value represents the initial application state&mdash;the initial/default model.
@@ -1290,47 +1256,26 @@ Now we can use Elm's built-in `Time.millisToPosix` function to convert the POSIX
 
 ##### Elm: Function composition
 In `DateFormatter.elm` we have a an example of _function composition_&mdash;a central concept in functional programming.
-Given two functions:
-<p><center>
-<img src="https://latex.codecogs.com/gif.latex?
-\begin{aligned}
-f&:X\to Y\\
-g&:Y\to Z
-\end{aligned}"/>
-</center></p>
-
-<p><center><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}f&:X\to&space;Y\\g&:Y\to&space;Z\end{aligned}"/>
-</center></p>
-
-<center>
-
-![](docs/domain-codomain.gif)
-</center>
-
-Their composition is:
-<p><center><img src="https://latex.codecogs.com/gif.latex?g\circ&space;f:X\to&space;Z"/></center></p>
-
-<center>
-![](docs/composition.gif)
-</center>
-
-Applying the composed function to all <img src="https://latex.codecogs.com/gif.latex?x"/> in <img src="https://latex.codecogs.com/gif.latex?X"/> is defined by:
-
-Applying the composed function to all <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;x" alt="x" title="x" /></a> in <img src="https://latex.codecogs.com/gif.latex?X"/> is defined by:
-<!--
+Given two functions
 <p>
 <center>
-<img src="https://latex.codecogs.com/gif.latex?(g\circ f)(x)=g(f(x))"/>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}f&:X\to&space;Y\\g&:Y\to&space;Z\end{aligned}"/>
 </center>
 </p>
--->
 
+Their composition is:
+<p>
 <center>
-
-![Composed function applied to value x](docs/composition-applied.gif "Composed function applied to value x")
+<img src="https://latex.codecogs.com/gif.latex?g\circ&space;f:X\to&space;Z"/>
 </center>
+</p>
 
-![composed function applied to value x](https://latex.codecogs.com/gif.latex?(gf)(x)=fg(x) "Composed function applied to value x")
+Applying the composed function to all <img src="https://latex.codecogs.com/gif.latex?x"/> in <img src="https://latex.codecogs.com/gif.latex?X"/> is defined by:
+<p>
+<center>
+<img src="https://latex.codecogs.com/gif.latex?(g\circ&space;f)(x)=g(f(x))"/>
+</center>
+</p>
 
 We want to display all date and time numbers with two digits, prepended by a '`0`' when it is a single-digit natural number.
 In Elm's `String` module we have:
@@ -1351,9 +1296,17 @@ twoDigitsString : String -> String
 twoDigitsString = String.padLeft 2 '0'
 ```
 Now we have two functions lined up for composition:
-<p><center><img src="https://latex.codecogs.com/gif.latex?twoDigitsString\circ fromInt:Int\to String"/></center></p>
+<p>
+<center>
+<img src="https://latex.codecogs.com/gif.latex?twoDigitsString\circ&space;fromInt:Int\to&space;String"/>
+</center>
+</p>
 Applying the composed function to all <img src="https://latex.codecogs.com/gif.latex?x"/> of type `Int` is defined by:
-<p><center><img src="https://latex.codecogs.com/gif.latex?(twoDigitsString\circ fromInt)(x)=twoDigitsString(fromInt(x))"/></center></p>
+<p>
+<center>
+<img src="https://latex.codecogs.com/gif.latex?(twoDigitsString\circ&space;fromInt)(x)=twoDigitsString(fromInt(x))"/>
+</center>
+</p>
 
 In Elm, we compose functions by using either `<<` or `>>`.
 `>>` means "execution order" ("read from left"):
@@ -1377,11 +1330,6 @@ int2twoDigitString = String.padLeft 2 '0' << String.fromInt
 In Elm we pattern match with the `case of` keyword.
 In object-oriented programming, case expressions are often discouraged in favour of [subtype polymorphism](https://en.wikipedia.org/wiki/Subtyping).
 In functional programming on the other hand, it is an important construct when working with [sum types](sum-type).
-
-
-
-
-
 
 Our `format` function looks like this:
 ```elm
