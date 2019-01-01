@@ -1,6 +1,7 @@
 {
     "name": "default-webapp-elm-now",
     "version": "0.7.11",
+    "description": "Default Webapp - An opinionated/favourite setup for web application development",
     "license": "ISC",
     "repository": {
         "type": "git",

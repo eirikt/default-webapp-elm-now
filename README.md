@@ -831,8 +831,25 @@ main = Browser.sandbox
     }
 ```
 (Like in [Haskell](https://www.haskell.org), the `\` mimics
-<img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of <img src="https://latex.codecogs.com/gif.latex?\lambda x"/>.
-It is a bound variable in an anonymous function.)
+<img src="https://latex.codecogs.com/gif.latex?\lambda"/> ("lambda"), so e.g. `\x` will correspond to [lambda calculus](lambda-calculus) notation of ![&lambda;x](docs/lambda-x.gif "&lambda;x")&mdash;a bound variable in an anonymous function.)
+
+![](docs/lambda-x.gif)
+
+![](docs/lambda-x.gif "&lambda;x")
+
+![&lambda;x](docs/lambda-x.gif "&lambda;x")
+
+![&lambda;x](https://latex.codecogs.com/gif.latex?\lambda&space;x "&lambda;x")
+
+![&lambda;x](https://latex.codecogs.com/gif.latex?\lambda%20x "&lambda;x")
+
+<img src="https://latex.codecogs.com/gif.latex?\lambda x"/>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\lambda&space;x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\lambda&space;x" title="\lambda x" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\lambda&space;x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;x" title="\lambda x" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\lambda&space;x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;x" alt="&lambda;x" title="\lambda x" /></a>
 
 The `main` value is a value/data structure representing our entire application that is handed to the Elm runtime.
 The `init` value represents the initial application state&mdash;the initial/default model.
@@ -1265,10 +1282,39 @@ f&:X\to Y\\
 g&:Y\to Z
 \end{aligned}"/>
 </center></p>
+
+<center>
+
+![](docs/domain-codomain.gif)
+</center>
+
 Their composition is:
 <p><center><img src="https://latex.codecogs.com/gif.latex?g\circ f:X\to Z"/></center></p>
+
+<center>
+
+![](docs/composition.gif)
+</center>
+
 Applying the composed function to all <img src="https://latex.codecogs.com/gif.latex?x"/> in <img src="https://latex.codecogs.com/gif.latex?X"/> is defined by:
-<p><center><img src="https://latex.codecogs.com/gif.latex?(g\circ f)(x)=g(f(x))"/></center></p>
+
+<!--
+<p>
+<center>
+<img src="https://latex.codecogs.com/gif.latex?(g\circ f)(x)=g(f(x))"/>
+</center>
+</p>
+-->
+
+<center>
+
+![Composed function applied to value x](docs/composition-applied.gif "Composed function applied to value x")
+</center>
+
+![composed function applied to value x](https://latex.codecogs.com/gif.latex?(gf)(x)=fg(x) "Composed function applied to value x")
+
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 
 We want to display all date and time numbers with two digits, prepended by a '`0`' when it is a single-digit natural number.
 In Elm's `String` module we have:
