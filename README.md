@@ -35,7 +35,7 @@ _To be very basic and specific_, the only prerequisites are:
 Then:
 1. Install [Node.js][node] (The package manager tool, _npm_, is included).
 
-   While at it&mdash;update npm (which release cycle is more frequent than Node.js'):
+   While at it&mdash;update npm (npm's release cycle is more frequent than Node.js'):
    ```bash
    npm install npm@latest --global
    ```
@@ -268,9 +268,11 @@ By that, it brings (by default, out-of-the-box) good stuff like:
 
 - [Sum types][sum-type]&mdash;which together with the enforced static type checking eliminates [null references](https://en.wikipedia.org/wiki/Null_pointer)
 
-- [Partial function application][partial-application]&mdash;which facilitates creating highly reusable "configurable" functions. It also enables [currying][currying]
+- [Partial function application][partial-application]&mdash;which facilitates creating highly reusable "configurable" functions
 
 - [Parametric polymorphism][parametric-polymorphism]&mdash;enabling compact, yet expressive and precise logic
+
+(For an intro to functional programming, go e.g. [here---my own attempt of clarifying concepts and terms, from the ground up](https://functionalprogramming.now.sh/1-functions-and-values.html). **NB! Work in progress.**)
 
 Elm [transpiles](https://en.wikipedia.org/wiki/Source-to-source_compiler) to ECMAScript 5. Hence, without any further transpiling, leaves Internet Explorer 8 and all those even more ancient browsers behind.
 
@@ -841,7 +843,8 @@ The `update` function represents state changes, e.g. browser events received fro
 
 As the user yet do not have any means of updating the application state via the DOM, the `update` function will never be invoked.
 `init` is the only "update", for now.
-Without messages/events coming from the browser our Elm application looks like this:![](docs/browser-static.png)<div style="text-align: right"><sub><sup>Modification of source from: <a href="https://guide.elm-lang.org/effects/">https://guide.elm-lang.org/effects/</a></sup></sub></div>
+Without messages/events coming from the browser our Elm application looks like this:
+![](docs/browser-static.png)<div style="text-align: right"><sub><sup>Modification of source from: <a href="https://guide.elm-lang.org/effects/">https://guide.elm-lang.org/effects/</a></sup></sub></div>
 ...a "static" web page containing initial state only.
 
 #### v0.7.5: Elm: Function declarations [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/b5b14c052db71edc8589953adb5ea8bdb1afe6f4) ]
@@ -1003,7 +1006,8 @@ An alternative to CSS Flexbox is [CSS Grid Layout][css-grid-layout].
 
 #### v0.7.9: Elm: `Browser.sandbox`: Reacting to DOM events [ [commit](https://github.com/eirikt/default-webapp-elm-now/commit/77b2cde9aa62144a3746973e7d9e5505fae2cd73) | [deployment](https://build-qwhozdzxrb.now.sh) ]
 We are now going to accept and react to some events coming from the user, via the mouse/keyboard, via the browser, via the DOM, and finally via our `view` function within the Elm runtime.
-The system now looks like this:![][elm-architecture-sandbox]
+The system now looks like this:
+![][elm-architecture-sandbox]
 <div style="text-align: right"><sub><sup>Source: <a href="https://guide.elm-lang.org/effects/">https://guide.elm-lang.org/effects/</a></sup></sub></div>
 
 The `Msg` type is the concrete version of the parametric `msg` type mentioned above.
@@ -1256,7 +1260,7 @@ Now we can use Elm's built-in `Time.millisToPosix` function to convert the POSIX
 
 ##### Elm: Function composition
 In `DateFormatter.elm` we have a an example of _function composition_&mdash;a central concept in functional programming.
-Given two functions
+Given two functions:
 <p>
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}f&:X\to&space;Y\\g&:Y\to&space;Z\end{aligned}"/>
@@ -1301,6 +1305,7 @@ Now we have two functions lined up for composition:
 <img src="https://latex.codecogs.com/gif.latex?twoDigitsString\circ&space;fromInt:Int\to&space;String"/>
 </center>
 </p>
+
 Applying the composed function to all <img src="https://latex.codecogs.com/gif.latex?x"/> of type `Int` is defined by:
 <p>
 <center>
@@ -1314,7 +1319,7 @@ In Elm, we compose functions by using either `<<` or `>>`.
 int2twoDigitsString : Int -> String
 int2twoDigitsString = String.fromInt >> twoDigitsString
 ```
-while `<<` means "composition order" ("read from right"):
+while `<<` means "composition order" ("read from right"), also known as "piping":
 ```elm
 int2twoDigitsString : Int -> String
 int2twoDigitsString = twoDigitsString << String.fromInt
@@ -1377,8 +1382,6 @@ int2twoDigitString (Time.toYear Time.utc posix)
 ```
 ...keeping the read order left-to-right corresponding to the order of the function applications.
 
-...
-
 We have to install two more Elm packages to make these new functions compile:
 ```bash
 elm install elm/time
@@ -1391,16 +1394,19 @@ _TODO: ..._
 #### v0.7.13: Elm: Animations
 _TODO: ..._
 
-### v0.8: "Offline first" / Service Workers
+### v0.8: Elm: "Offline first" / Service Workers
 _TODO: ..._
 
-### v0.x: "Mobile App" / Progressive Web Applications (PWA)
+### v0.x: Elm: "Mobile App" / Progressive Web Applications (PWA)
 _TODO: ..._
 
-### v0.x: "Desktop App" / [Electron][electronjs]
+### v0.x: Elm: "Desktop App" / [Electron][electronjs]
 _TODO: ..._
 
-### v0.x: Utilizing [FaaS](https://en.wikipedia.org/wiki/Function_as_a_service) resources
+### v0.x: Elm: Utilizing [FaaS](https://en.wikipedia.org/wiki/Function_as_a_service) resources
+_TODO: ..._
+
+### v0.x: Elm: Type-safe styling
 _TODO: ..._
 
 ### v0.x: Elm: Standalone components
